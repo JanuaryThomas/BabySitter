@@ -27,14 +27,14 @@ def before_request():
 @bp.route('/locs')
 def locs():
     data = {
-
+        "rest": []
     }
 
     for location in Location.query.all():
         lats = []
         lats.append(location.user_lng)
         lats.append(location.user_lat)
-        data.update(lats)
+        data["rest"].append(lats)
 
     return jsonify(data)
 
