@@ -1,10 +1,14 @@
+
 {% extends 'application/base.html' %}
 
 {% block app_content %}
-        <div class="az-error-wrapper">
-      <h1>Oops!</h1>
-      <h2>Email unconfirmed</h2>
-      <h6>Please confirm your email first</h6>
-      <a href="{{ url_for('application.index') }}" class="btn btn-outline-indigo">Back to Home</a>
+    <div class="row u-justify-center">
+        <div class="col-lg-12 u-text-center">
+            <h2 class="u-mb-small">{{ _('Shall everything go well') }}</h2>
+            <p class="u-text-large u-mb-large">Email unconfirmed!, Please confirm your email first</p>
+            <a href="{{ url_for('application.login') }}" class="btn btn-rounded btn-outline-primary">Login</a>
+        </div>
     </div>
 {% endblock %}
+
+

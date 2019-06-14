@@ -1,12 +1,16 @@
 {% extends 'application/base.html' %}
 
 {% block app_content %}
-    <div class="az-error-wrapper">
-        <h1>OK</h1>
-        <h2>See your inbox for tempolary pin</h2>
-        <h6>A temporary pin has been sent to you</h6>
+    <div class="row u-justify-center">
+        <div class="col-lg-12 u-text-center">
+            <h2 class="u-mb-small">{{ _('Shall everything go well') }}</h2>
+            <p class="u-text-large u-mb-large">We have Sent you a temporary login PIN.
+                Password</p>
 
-        <p>Use your sent PIN to login</p>
-        <a href="{{ url_for('application.login') }}" class="btn btn-rounded btn-outline-primary">Login</a>
+            <p>Use your sent PIN to login</p>
+            <a href="{{ url_for('application.login') }}" class="btn btn-rounded btn-outline-primary">Login</a>
+        </div>
     </div>
 {% endblock %}
+
+
