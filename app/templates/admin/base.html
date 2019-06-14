@@ -24,178 +24,52 @@
 
 <div class="o-page">
 
-     <div class="o-page__sidebar js-page-sidebar">
+    <div class="o-page__sidebar js-page-sidebar">
         <aside class="c-sidebar">
-          <div class="c-sidebar__brand">
-            <img style="height: 50px; width: 50px"  src="{{ url_for('static', filename="img/mother.png") }}" alt="Neat">
-          </div>
+            <div class="c-sidebar__brand">
+                <img style="height: 50px; width: 50px" src="{{ url_for('static', filename="img/mother.png") }}"
+                     alt="Neat">
+            </div>
 
-          <!-- Scrollable -->
-          <div class="c-sidebar__body">
-            <span class="c-sidebar__title">General</span>
-            <ul class="c-sidebar__list">
-              <li>
-                <a class="c-sidebar__link" href="pipeline.html">
-                  <i class="c-sidebar__icon feather icon-move"></i>Pipeline
-                </a>
-              </li>
-              <li>
-                <a class="c-sidebar__link" href="{{ url_for('administrator.applications') }}">
-                  <i class="c-sidebar__icon feather icon-users"></i>Applicants
-                </a>
-              </li>
-                <li>
-                <a class="c-sidebar__link" href="">
-                  <i class="c-sidebar__icon feather icon-users"></i>Parrents
-                </a>
-              </li>
-              <li>
-                <a class="c-sidebar__link" href="invoice.html">
-                  <i class="c-sidebar__icon feather icon-file-text"></i>Single Invoice
-                </a>
-              </li>
+            <!-- Scrollable -->
+            <div class="c-sidebar__body">
+                <span class="c-sidebar__title">General</span>
+                <ul class="c-sidebar__list">
+                    <li>
+                        <a class="c-sidebar__link" href="{{ url_for('administrator.applications') }}">
+                            <i class="c-sidebar__icon feather icon-users"></i>Applicants/BabySitters
+                        </a>
+                    </li>
+                    <li>
+                        <a class="c-sidebar__link" href="">
+                            <i class="c-sidebar__icon feather icon-users"></i>Parrents
+                        </a>
+                    </li>
+                    <li>
+                        <a class="c-sidebar__link" href="">
+                            <i class="c-sidebar__icon feather icon-file-text"></i>Payments
+                        </a>
+                    </li>
 
 
-            </ul>
-          </div>
+                </ul>
+            </div>
 
 
-          <a class="c-sidebar__footer" href="#">
-            Logout <i class="c-sidebar__footer-icon feather icon-power"></i>
-          </a>
+            <a class="c-sidebar__footer" href="#">
+                Logout <i class="c-sidebar__footer-icon feather icon-power"></i>
+            </a>
         </aside>
-      </div>
+    </div>
     <main class="o-page__content" style="">
 
         <header class="c-navbar u-mb-medium">
             {% if current_user.is_authenticated %}
                 <button class="c-sidebar-toggle js-sidebar-toggle">
-            <i class="feather icon-align-left"></i>
-          </button>
+                    <i class="feather icon-align-left"></i>
+                </button>
 
-          <h2 class="c-navbar__title">My Dashboard</h2>
-
-          <div class="c-dropdown dropdown u-mr-small">
-            <div class="c-notification dropdown-toggle" id="dropdownMenuToggle1" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-              <i class="c-notification__icon feather icon-message-circle"></i>
-            </div>
-
-            <div class="c-dropdown__menu c-dropdown__menu--large has-arrow dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuToggle1">
-
-              <span class="c-dropdown__menu-header">
-                Mentions
-              </span>
-              <a class="c-dropdown__item dropdown-item" href="#">
-                <div class="o-media">
-                  <div class="o-media__img u-mr-xsmall">
-                    <span class="c-avatar c-avatar--xsmall">
-                      <img class="c-avatar__img" src="{{ current_user.avatar(size=32) }}" alt="{{ current_user.username }}">
-                    </span>
-                  </div>
-
-                  <div class="o-media__body">
-                    <p>Hey, Julia how are you doing. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eius iste.</p>
-                  </div>
-                </div>
-              </a>
-
-              <a class="c-dropdown__item dropdown-item" href="#">
-                <div class="o-media">
-                  <div class="o-media__img u-mr-xsmall">
-                    <span class="c-avatar c-avatar--xsmall">
-                      <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Adam Sandler">
-                    </span>
-                  </div>
-
-                  <div class="o-media__body">
-                    <p>Hey, Julia how are you doing. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eius iste.</p>
-                  </div>
-                </div>
-              </a>
-
-              <a class="c-dropdown__item dropdown-item" href="#">
-                <div class="o-media">
-                  <div class="o-media__img u-mr-xsmall">
-                    <span class="c-avatar c-avatar--xsmall">
-                      <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Adam Sandler">
-                    </span>
-                  </div>
-
-                  <div class="o-media__body">
-                    <p>Hey, Julia how are you doing. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Repellat eius iste.</p>
-                  </div>
-                </div>
-              </a>
-
-              <a class="c-dropdown__menu-footer">
-                All Mentions
-              </a>
-            </div>
-          </div>
-
-          <div class="c-dropdown dropdown u-mr-medium">
-            <div class="c-notification has-indicator dropdown-toggle" id="dropdownMenuToggle2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-              <i class="c-notification__icon feather icon-bell"></i>
-            </div>
-
-            <div class="c-dropdown__menu c-dropdown__menu--large has-arrow dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuToggle2">
-
-              <span class="c-dropdown__menu-header">
-                Notifications
-              </span>
-              <a class="c-dropdown__item dropdown-item" href="#">
-                <div class="o-media">
-                  <div class="o-media__img u-mr-xsmall">
-                    <span class="c-icon c-icon--info c-icon--xsmall"><i class="feather icon-globe"></i></span>
-                  </div>
-
-                  <div class="o-media__body">
-                    <p>We've updated the Stripe Services agreement and its supporting terms. Your continueduse of Stripe's services.</p>
-                  </div>
-                </div>
-              </a>
-
-              <a class="c-dropdown__item dropdown-item" href="#">
-                <div class="o-media">
-                  <div class="o-media__img u-mr-xsmall">
-                    <span class="c-icon c-icon--danger c-icon--xsmall"><i class="feather icon-x"></i></span>
-                  </div>
-
-                  <div class="o-media__body">
-                    <p>We've updated the Stripe Services agreement and its supporting terms. Your continueduse of Stripe's services.</p>
-                  </div>
-                </div>
-              </a>
-
-              <a class="c-dropdown__item dropdown-item" href="#">
-                <div class="o-media">
-                  <div class="o-media__img u-mr-xsmall">
-                    <span class="c-icon c-icon--success c-icon--xsmall"><i class="feather icon-anchor"></i></span>
-                  </div>
-
-                  <div class="o-media__body">
-                    <p>We've updated the Stripe Services agreement and its supporting terms. Your continueduse of Stripe's services.</p>
-                  </div>
-                </div>
-              </a>
-
-              <a class="c-dropdown__menu-footer">
-                All Notifications
-              </a>
-            </div>
-          </div>
-
-          <div class="c-dropdown dropdown">
-            <div class="c-avatar c-avatar--xsmall dropdown-toggle" id="dropdownMenuAvatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
-              <img class="c-avatar__img" src="{{ current_user.avatar(size=72) }}" alt="{{ current_user.username }}">
-            </div>
-
-            <div class="c-dropdown__menu has-arrow dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuAvatar">
-              <a class="c-dropdown__item dropdown-item" href="#">Edit Profile</a>
-              <a class="c-dropdown__item dropdown-item" href="#">View Activity</a>
-              <a class="c-dropdown__item dropdown-item" href="#">Log out</a>
-            </div>
-          </div>
+                <h2 class="c-navbar__title">Admin Dashboard</h2>
             {% endif %}
 
         </header>

@@ -10,7 +10,7 @@ from flask_ckeditor import upload_fail, upload_success
 from flask_login import current_user, login_required
 from app import db
 from app.adminstrator import bp
-from app.models import User, Applicant, Permission
+from app.models import User, Applicant, Permission, Role
 from .. import mqtt
 from .. import socketio
 import cloudinary
@@ -30,7 +30,10 @@ cloudinary.config(
 
 @bp.before_request
 def before_request():
-    pass
+    role = Role.query.filter_by(user_id=current_user.id).first()
+    if role.name != Permission.ADMIN:
+        flash("Sorry!, you cant access this page!.")
+        return redirect(url_for('main.index'))
 
 @bp.route('/')
 @bp.route('/index')
@@ -58,8 +61,8 @@ def applicant(token):
 @login_required
 def approve(token):
     applicant = Applicant.query.filter_by(secure_token=token).first()
-    if applicant is None:
-        return 'This applicant does not exist'
+    if applicant is None: abort(404)
+
 
     if applicant.email_confirmed:
         applicant.registration_id =randbits(32)
@@ -69,13 +72,22 @@ def approve(token):
     flash("Email not confirmed cant approve this use")
     return redirect(url_for('administrator.applicants'))
 
+@bp.route('/disapprove/<string:token>')
+@login_required
+def disapprove(token):
+    applicant = Applicant.query.filter_by(secure_token=token).first()
+    if applicant is None: abort(404)
+
+    applicant.un_accept()
+    flash("This applicant is No longer accepted as Baby sitter")
+
+
 @bp.route('/account/<string:username>/<string:token>')
 @login_required
 def account(username, token):
     user = User.query.filter_by(username=username).first()
 
-    if user is None:
-        return "This userd doesn't exists"
+    if user is None: abort(404)
 
     if user.secure_token == token:
         return render_template('admin/user.html', user=user, title=_(user.username))

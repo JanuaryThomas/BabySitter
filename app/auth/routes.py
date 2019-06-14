@@ -85,7 +85,7 @@ def admin_login():
             flash("User Login Successfully")
             next_page = url_for('administrator.index')
         return redirect(next_page)
-    return render_template('auth/admin/login.html', title=_('Sign In'), form=form)
+    return render_template('auth/admin/login.html', title=_('Admin - Sign In'), form=form)
 
 """
 This route register admin
@@ -112,7 +112,7 @@ def admin_register():
 
         flash('Congratulations, you are now a registered Admin!')
         return redirect(url_for('auth.admin_login'))
-    return render_template('auth/admin/register.html', title=_('Register'), form=form)
+    return render_template('auth/admin/register.html', title=_('Admin - Register'), form=form)
 
 """
 This route logout a parent
