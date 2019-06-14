@@ -21,7 +21,9 @@
       <!-- Navbar Section -->
       <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
         <div class="container container-s">
-          <a class="navbar-brand" href="#">BabySitter.</a>
+          <a class="navbar-brand" href="#">
+              <img src="{{ url_for('static', filename="img/mother.png") }}" alt="Neat">
+              BabySitter.</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
@@ -51,6 +53,8 @@
                 <div class="client-list wow fadeIn">
                   <ul>
                     <li><img class="img-fluid" src="{{ url_for('static', filename="img/pesapal.png") }}" alt="Client"> </li>
+                      <li><img class="img-fluid" src="{{ url_for('static', filename="img/mpesa.png") }}" alt="Client"> </li>
+                      <li><img class="img-fluid" src="{{ url_for('static', filename="img/tigopesa.jpg") }}" alt="Client"> </li>
                   </ul>
                 </div>
               </div>
