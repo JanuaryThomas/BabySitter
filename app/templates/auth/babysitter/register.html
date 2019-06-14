@@ -5,7 +5,9 @@
 
     <div class="o-page__card">
         <div class="c-card c-card--center">
-
+ <span class="c-icon c-icon--large u-mb-small">
+            <img src="{{ url_for('static', filename="img/mother.png") }}" alt="Neat">
+          </span>
           <h4 class="u-mb-medium">Register Form :)</h4>
           {{ wtf.quick_form(form) }}
 

@@ -5,16 +5,18 @@
 
     <div class="o-page__card">
         <div class="c-card c-card--center">
-
-          <h4 class="u-mb-medium">RegisterForm :)</h4>
-          {{ wtf.quick_form(form) }}
+            <span class="c-icon c-icon--large u-mb-small">
+            <img src="{{ url_for('static', filename="img/mother.png") }}" alt="Neat">
+          </span>
+            <h4 class="u-mb-medium">Registration Form</h4>
+            {{ wtf.quick_form(form) }}
 
             <p>
-                 New Here?<a href="{{ url_for('auth.login') }}">Click here to Login </a>
+                New Here?<a href="{{ url_for('auth.login') }}">Click here to Login </a>
 
             </p>
         </div>
 
-      </div>
+    </div>
 
 {% endblock %}
