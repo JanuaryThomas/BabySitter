@@ -21,11 +21,7 @@ from app.main.forms import EditProfileForm, EditBillingAddressForm, BillingAddre
 
 @bp.before_request
 def before_request():
-    if current_user.is_authenticated:
-
-        if current_user.baby_sitter.count() > 0:
-            flash(_("You can not access this page"))
-            return redirect(url_for('babysitter.index'))
+    pass
 
 
 
