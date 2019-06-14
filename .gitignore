@@ -1,0 +1,12 @@
+__pycache__/
+.idea/*
+logs/*
+*.db
+*.log
+*.sqlite
+*.py[cod]
+*$py.class
+*.log
+*.db
+.idea/workspace.xml
+.idea/workspace.xml

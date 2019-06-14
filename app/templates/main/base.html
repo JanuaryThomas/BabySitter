@@ -1,0 +1,255 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% if title %} Sitters Seeker - {{ _(title) }}
+    {% else %}
+        Sitters Seeker - {{ _('Welcome  !!') }}
+    {% endif %}
+    </title>
+    <meta name="description" content="Neat">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="css/neat.min.css") }}?v=1.0">
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
+
+<link href='{{ url_for('static', filename='css/map.css') }}' rel='stylesheet' />
+
+
+<style>
+
+</style>
+
+
+</head>
+<body>
+
+<div class="o-page">
+    {% if current_user.is_authenticated %}
+        <div class="o-page__sidebar js-page-sidebar">
+            <aside class="c-sidebar">
+                <div class="c-sidebar__brand">
+                    <a href="#"><img src="{{ current_user.avatar(size=32) }}" alt="{{ _(current_user.email) }}"></a>
+                </div>
+
+                <!-- Scrollable -->
+                <div class="c-sidebar__body">
+                    <span class="c-sidebar__title">Dashboards</span>
+                    <ul class="c-sidebar__list">
+                        <li>
+                            <a class="c-sidebar__link is-active"
+                               href="{{ url_for('main.profile', token=secure_token) }}">
+                                <i class="c-sidebar__icon feather icon-user"></i>Profile
+                            </a>
+                        </li>
+                        <li>
+                            <a class="c-sidebar__link" href="">
+                                <i class="c-sidebar__icon feather icon-message-square"></i>Messages
+                            </a>
+                        </li>
+
+                        <li>
+                            <a class="c-sidebar__link" href="{{ url_for('main.selection') }}">
+                                <i class="c-sidebar__icon feather  icon-users"></i>Selections
+                            </a>
+                        </li>
+
+                        <li class="container-fluid">
+                            {% if current_user.is_available %}
+                                <a class="c-btn c-btn--danger u-mb-xsmall" href="">
+                                    <i class="c-sidebar__icon feather icon-message-square"></i> Set Busy
+                                </a>
+                            {% else %}
+                                <a class="c-btn c-btn--success u-mb-xsmall"
+                                   href="{{ url_for('babysitter.set_available') }}">
+                                    Set Available
+                                </a>
+                            {% endif %}
+                        </li>
+
+
+                        <li class="container-fluid">
+                            <a class="c-btn c-btn--secondary u-mb-xsmall"
+                               href="{{ url_for('babysitter.set_available') }}">
+                                Update Location
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+
+
+                <a class="c-sidebar__footer" href="#">
+                    Logout <i class="c-sidebar__footer-icon feather icon-power"></i>
+                </a>
+            </aside>
+        </div>
+    {% endif %}
+
+
+    <main class="o-page__content">
+        {% if current_user.is_authenticated %}
+            <header class="c-navbar u-mb-medium">
+                <button class="c-sidebar-toggle js-sidebar-toggle">
+                    <i class="feather icon-align-left"></i>
+                </button>
+
+                <h2 class="c-navbar__title">{{ title }}</h2>
+
+                <div class="c-dropdown dropdown u-mr-small">
+                    <div class="c-notification dropdown-toggle" id="dropdownMenuToggle1" data-toggle="dropdown"
+                         aria-haspopup="true" aria-expanded="false" role="button">
+                        <i class="c-notification__icon feather icon-message-circle"></i>
+                    </div>
+
+                    <div class="c-dropdown__menu c-dropdown__menu--large has-arrow dropdown-menu dropdown-menu-right"
+                         aria-labelledby="dropdownMenuToggle1">
+
+              <span class="c-dropdown__menu-header">
+                Mentions
+              </span>
+                        <a class="c-dropdown__item dropdown-item" href="#">
+                            <div class="o-media">
+                                <div class="o-media__img u-mr-xsmall">
+                    <span class="c-avatar c-avatar--xsmall">
+                      <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Adam Sandler">
+                    </span>
+                                </div>
+
+                                <div class="o-media__body">
+                                    <p>Hey, Julia how are you doing. Lorem ipsum dolor sit amet, consectetur adipisicing
+                                        elit. Repellat eius iste.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="c-dropdown__item dropdown-item" href="#">
+                            <div class="o-media">
+                                <div class="o-media__img u-mr-xsmall">
+                    <span class="c-avatar c-avatar--xsmall">
+                      <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Adam Sandler">
+                    </span>
+                                </div>
+
+                                <div class="o-media__body">
+                                    <p>Hey, Julia how are you doing. Lorem ipsum dolor sit amet, consectetur adipisicing
+                                        elit. Repellat eius iste.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="c-dropdown__item dropdown-item" href="#">
+                            <div class="o-media">
+                                <div class="o-media__img u-mr-xsmall">
+                    <span class="c-avatar c-avatar--xsmall">
+                      <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Adam Sandler">
+                    </span>
+                                </div>
+
+                                <div class="o-media__body">
+                                    <p>Hey, Julia how are you doing. Lorem ipsum dolor sit amet, consectetur adipisicing
+                                        elit. Repellat eius iste.</p>
+                                </div>
+                            </div>
+                        </a>
+
+                        <a class="c-dropdown__menu-footer">
+                            All Mentions
+                        </a>
+                    </div>
+                </div>
+
+                <div class="c-dropdown dropdown u-mr-medium">
+                    <div class="c-notification has-indicator dropdown-toggle" id="dropdownMenuToggle2"
+                         data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                        <i class="c-notification__icon feather icon-bell"></i>
+                    </div>
+
+                    <div class="c-dropdown__menu c-dropdown__menu--large has-arrow dropdown-menu dropdown-menu-right"
+                         aria-labelledby="dropdownMenuToggle2">
+
+
+                        <a class="c-dropdown__menu-footer">
+                            No Notification
+                        </a>
+                    </div>
+                </div>
+
+                <div class="c-dropdown dropdown">
+                    <div class="c-avatar c-avatar--xsmall dropdown-toggle" id="dropdownMenuAvatar"
+                         data-toggle="dropdown"
+                         aria-haspopup="true" aria-expanded="false" role="button">
+                        <img class="c-avatar__img" src="{{ current_user.avatar(size=32) }}"
+                             alt="{{ current_user.username }}">
+                    </div>
+
+                    <div class="c-dropdown__menu has-arrow dropdown-menu dropdown-menu-right"
+                         aria-labelledby="dropdownMenuAvatar">
+                        <a class="c-dropdown__item dropdown-item" href="#">Edit Profile</a>
+                        <a class="c-dropdown__item dropdown-item" href="#">View Activity</a>
+                        <a class="c-dropdown__item dropdown-item" href="#">Log out</a>
+                    </div>
+                </div>
+            </header>
+        {% endif %}
+
+        <div class="container">
+
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                        <div class="c-alert c-alert--info alert u-mb-medium">
+            <span class="c-alert__icon">
+              <i class="feather icon-info"></i>
+            </span>
+
+                            <div class="c-alert__content">
+                                <h4 class="c-alert__title">Heads Up!</h4>
+                                <p>{{ _(message) }}</p>
+                            </div>
+
+                            <button class="c-close" data-dismiss="alert" type="button">×</button>
+                        </div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+            {% block app_content %}
+            {% endblock %}
+
+
+
+            <div class="row">
+                <div class="col-12">
+                    <footer class="c-footer">
+                        <p>© 2018 Ruthbrenda Exaud, Inc</p>
+                        <span class="c-footer__divider">|</span>
+                        <nav>
+                            <a class="c-footer__link" href="#">Terms</a>
+                            <a class="c-footer__link" href="#">Privacy</a>
+                            <a class="c-footer__link" href="#">FAQ</a>
+                            <a class="c-footer__link" href="#">Help</a>
+                        </nav>
+                    </footer>
+                </div>
+            </div>
+        </div>
+    </main>
+</div>
+
+<!-- Main JavaScript -->
+ <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    {{ moment.include_moment() }}
+    <script type="application/javascript" src="{{ url_for('static', filename='js/neat.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block script%}{% endblock %}
+</body>
+</html>

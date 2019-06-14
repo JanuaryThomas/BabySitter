@@ -1,0 +1,43 @@
+{% extends 'main/base.html' %}
+
+{% block app_content %}
+
+    <div class="row">
+        <div class="col-12">
+            <div class="c-table-responsive@wide">
+                <table class="c-table">
+                    <thead class="c-table__head">
+                    <tr class="c-table__row">
+                        <th class="c-table__cell c-table__cell--head">Full name</th>
+                        <th class="c-table__cell c-table__cell--head">Phone</th>
+                        <th class="c-table__cell c-table__cell--head">Last Seen</th>
+                        <th class="c-table__cell c-table__cell--head">Action</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    <tr class="c-table__row">
+
+
+                        <td class="c-table__cell">{{ baby_sitter.baby_sitter.first_name }}</td>
+                        <td class="c-table__cell">{{ baby_sitter.baby_sitter.phone }}</td>
+                        <td class="c-table__cell">{{ moment(baby_sitter.baby_sitter.last_seen).fromNow() }}</td>
+                        <td>
+                            <a  href="{{ url_for('main.cancel_selection', token=baby_sitter.secure_token) }}"
+                               class="c-btn c-btn--success u-mb-xsmall">
+                                Cancel Selection
+                            </a>
+                        </td>
+
+
+
+                    </tr>
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

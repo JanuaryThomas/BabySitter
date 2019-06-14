@@ -1,0 +1,102 @@
+{% extends 'admin/base.html' %}
+
+{% block app_content %}
+
+
+
+    <div class="container">
+        <div class="row">
+            <div class="col-md-7">
+                {% if applicant.applicant_ids.count() > 0 %}
+                    {% for applicant_id in applicant.applicant_ids %}
+                        <div class="c-alert c-alert--info alert u-mb-medium">
+            <span class="c-alert__icon">
+              <i class="feather icon-info"></i>
+            </span>
+
+                            <div class="c-alert__content">
+                                <h4 class="c-alert__title">User ID</h4>
+                                <div>
+                                    <img src="{{ applicant_id.url }}">
+                                </div>
+                            </div>
+
+
+                        </div>
+                    {% endfor %}
+                {% else %}
+                    <div class="c-alert c-alert--info alert u-mb-medium">
+            <span class="c-alert__icon">
+              <i class="feather icon-info"></i>
+            </span>
+
+                        <div class="c-alert__content">
+                            <h4 class="c-alert__title">Heads Up! some info here</h4>
+                            <p>There is No Image associated to this applicant</p>
+                        </div>
+
+                        <button class="c-close" data-dismiss="alert" type="button">×</button>
+                    </div>
+                {% endif %}
+            </div>
+
+            <div class="col-md-5">
+                <div class="c-card">
+                    <div class="u-text-center">
+                        <h5>{{ applicant.full_name }}</h5>
+
+                    </div>
+
+                    <span class="c-divider u-mv-small"></span>
+
+                    <span class="c-text--subtitle">Email Address</span>
+                    <p class="u-mb-small u-text-large">{{ applicant.email }}</p>
+
+                    <span class="c-text--subtitle">Phone NUMBER</span>
+                    <p class="u-mb-small u-text-large">{{ applicant.phone }}</p>
+
+                    {% if applicant.accepted %}
+                        <span class="c-badge c-badge--success">Approved</span>
+                        <a href="" class="c-btn c-btn--danger u-mb-xsmall">Dis Approved</a>
+
+                        <span class="c-divider u-mv-small"></span>
+                        <span class="c-text--subtitle">Registration ID</span>
+                    <p class="u-mb-small u-text-large">{{ applicant.registration_id }}</p>
+                    {% else %}
+                        <a href="{{ url_for('administrator.approve', token=applicant.secure_token) }}" class="c-btn c-btn--success u-mb-xsmall">Approve</a>
+                    {% endif %}
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            'use strict';
+
+            $('#datatable1').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ items/page',
+                }
+            });
+
+            $('#datatable2').DataTable({
+                bLengthChange: false,
+                searching: false,
+                responsive: true
+            });
+
+            // Select2
+            $('.dataTables_length select').select2({minimumResultsForSearch: Infinity});
+
+        });
+    </script>
+{% endblock %}

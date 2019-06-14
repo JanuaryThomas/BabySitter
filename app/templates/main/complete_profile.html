@@ -1,0 +1,14 @@
+{% extends 'application/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block app_content %}
+
+    <div class="o-page__card">
+        <div class="c-card c-card--center">
+
+          <h4 class="u-mb-medium">Complete Profile :)</h4>
+          {{ wtf.quick_form(form) }}
+        </div>
+      </div>
+
+{% endblock %}

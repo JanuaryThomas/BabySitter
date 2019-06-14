@@ -1,0 +1,20 @@
+{% extends 'main/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block app_content %}
+    <div class="az-content">
+    <div class="container">
+        <div class="az-content-body">
+                <div class="az-content-breadcrumb">
+            <span>Profile</span>
+            <span>Edit Billing Address</span>
+          </div>
+            <div class="row">
+                <div class="col-lg-12">
+                     {{ wtf.quick_form(form) }}
+                </div><!-- col -->
+            </div>
+        </div><!-- az-content-body -->
+        </div>
+    </div><!-- az-content -->
+{% endblock %}

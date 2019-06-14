@@ -1,0 +1,77 @@
+{% extends 'babysitter/base.html' %}
+
+{% block app_content %}
+
+
+
+    <div class="row">
+
+
+        <div class="col-md-12">
+            <div class="c-card u-ph-zero u-pb-zero">
+
+                <div class="u-ph-medium">
+                    <p>Baby Seekers </p>
+                </div>
+                <div class="c-card is-animated u-text-center">
+                    <div class="c-avatar u-inline-flex u-mb-small">
+                        <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Clark">
+                    </div>
+                    <h4></h4>
+                    <p class="u-pb-small u-mb-small u-border-bottom">Facebook Inc.</p>
+
+                    <p class="u-h4">
+                        <a class="u-mr-xsmall" href="#">
+                            <i class="feather icon-facebook"></i>
+                        </a>
+                        <a class="u-mr-xsmall" href="#">
+                            <i class="feather icon-twitter"></i>
+                        </a>
+                        <a class="u-mr-xsmall" href="#">
+                            <i class="feather icon-github"></i>
+                        </a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block script %}
+    <script>
+        mapboxgl.accessToken = 'pk.eyJ1Ijoic3Rvcm1qYW51YXJ5IiwiYSI6ImNqbnMwZnc5ZzBjdGUza21kYXJmNDhybTAifQ.4Dw9Cn1YFH17xmCiSjz8yA';
+        var map = new mapboxgl.Map({
+            container: 'mapMapBox',
+            style: 'mapbox://styles/mapbox/dark-v9',
+            center: [39.2801, -6.8153],
+            zoom: 6
+        });
+
+        var geojson = {
+            type: 'FeatureCollection',
+            features: [{
+                type: 'Feature',
+                geometry: {
+                    type: 'Point',
+                    coordinates: [39.2801, -6.8153]
+                },
+                properties: {
+                    title: 'BabySitter',
+                    description: 'Dar Es Salaam'
+                }
+            }]
+        };
+
+        geojson.features.forEach(function (marker) {
+            var el = document.createElement('div');
+            el.className = 'baby_sitter';
+
+            new mapboxgl.Marker(el)
+                .setLngLat(marker.geometry.coordinates)
+                .addTo(map);
+        });
+
+
+    </script>
+
+{% endblock %}

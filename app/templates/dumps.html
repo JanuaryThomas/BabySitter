@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>
+        {% if title %} {{ title }} | Parrent
+        {% else %} Parrent {% endif %}
+    </title>
+
+
+ <script src="{{ url_for('static', filename='js/socket.io-1.2.0.js') }}"></script>
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/bootstrap/css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/fontawesome-free/css/all.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/ionicons/css/ionicons.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/typicons.font/typicons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/jqvmap/jqvmap.min.css') }}">
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.css' rel='stylesheet'/>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v0.53.1/mapbox-gl.js'></script>
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='lib/datatables.net-dt/css/jquery.dataTables.min.css') }}">
+    <link rel="stylesheet"
+          href="{{ url_for('static', filename='lib/datatables.net-responsive-dt/css/responsive.dataTables.min.css') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='lib/select2/css/select2.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/azia/azia.css') }}">
+</head>
+<body class="az-body bg-gray-100">
+
+{% block  navabar %}
+    <div class="az-header az-header-primary">
+        <div class="container">
+            <div class="az-header-left">
+                <a href="{{ url_for('administrator.index') }}" class="az-logo">BabySitter®</a>
+                <a href="" id="azNavShow" class="az-header-menu-icon d-lg-none"><span></span></a>
+            </div><!-- az-header-left -->
+            {% if current_user.is_authenticated %}
+                <div class="az-header-center">
+                    <input type="search" class="form-control" placeholder="Search for anything...">
+                    <button class="btn"><i class="fas fa-search"></i></button>
+                </div><!-- az-header-center -->
+                <div class="az-header-right">
+                    <div class="az-header-message">
+                        <a href="{{ url_for('administrator.messages', token=current_user.secure_token) }}"><i
+                                class="typcn typcn-messages"></i></a>
+                    </div><!-- az-header-message -->
+                    <div class="dropdown az-header-notification">
+                        <a href="" class="new"><i class="typcn typcn-bell"></i></a>
+                        <div class="dropdown-menu">
+                            <div class="az-dropdown-header mg-b-20 d-sm-none">
+                                <a href="" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
+                            </div>
+                            <h6 class="az-notification-title">Notifications</h6>
+                            <p class="az-notification-text">You have 0 unread notification</p>
+                            <div class="az-notification-list">
+                                {{ _('No Notification') }}
+                            </div><!-- az-notification-list -->
+                            <div class="dropdown-footer"><a href="">View All Notifications</a></div>
+                        </div><!-- dropdown-menu -->
+                    </div><!-- az-header-notification -->
+                    <div class="dropdown az-profile-menu">
+                        <a href="" class="az-img-user"><img src="{{ current_user.avatar(size=32) }}" alt=""></a>
+                        <div class="dropdown-menu">
+                            <div class="az-dropdown-header d-sm-none">
+                                <a href="" class="az-header-arrow"><i class="icon ion-md-arrow-back"></i></a>
+                            </div>
+                            <div class="az-header-profile">
+                                <div class="az-img-user">
+                                    <img src="{{ current_user.avatar(size=32) }}" alt="">
+                                </div><!-- az-img-user -->
+                                <h6>{{ current_user.firstname }}</h6>
+                                <span>Parrent </span>
+                            </div><!-- az-header-profile -->
+
+                            <a href="{{ url_for('administrator.account',username=current_user.username, token=current_user.secure_token) }}"
+                               class="dropdown-item"><i class="typcn typcn-user-outline"></i> My Profile</a>
+                            <a href=""
+                               class="dropdown-item"><i class="typcn typcn-edit"></i> Edit Profile</a>
+
+                            <a href="" class="dropdown-item"><i class="typcn typcn-cog-outline"></i> Account
+                                Settings</a>
+                            <a href="{{ url_for('auth.admin_logout') }}" class="dropdown-item"><i
+                                    class="typcn typcn-power-outline"></i> Sign
+                                Out</a>
+                        </div><!-- dropdown-menu -->
+                    </div>
+                </div><!-- az-header-right -->
+            {% endif %}
+        </div><!-- container -->
+    </div><!-- az-header -->
+
+    <div class="az-navbar">
+        <div class="container">
+            <div><a href="{{ url_for('administrator.index') }}" class="az-logo">BabySitter®</a></div>
+            {% if current_user.is_authenticated %}
+                <div class="az-navbar-search">
+                    <input type="search" class="form-control" placeholder="Search for anything...">
+                    <button class="btn"><i class="fas fa-search "></i></button>
+                </div><!-- az-navbar-search -->
+                <ul class="nav">
+                    <li class="nav-label">Main Menu</li>
+                    <li class="nav-item active show">
+                        <a href="{{ url_for('administrator.index') }}" class="nav-link"><i
+                                class="typcn typcn-clipboard"></i>Dashboard</a>
+                    </li><!-- nav-item -->
+
+                    <li class="nav-item active show">
+                        <a href="{{ url_for('administrator.applications') }}" class="nav-link"><i
+                                class="typcn typcn-clipboard"></i>Applicants</a>
+                    </li><!-- nav-item -->
+
+                    <li class="nav-item">
+                        <a href="" class="nav-link with-sub"><i class="typcn typcn-document"></i>Messages</a>
+                        <nav class="nav-sub">
+                            <a href="{{ url_for('administrator.messages') }}" class="nav-sub-link">Messages</a>
+                            <a href="{{ url_for('administrator.new_message') }}" class="nav-sub-link">New Messages</a>
+                        </nav>
+                    </li><!-- nav-item -->
+                    <li class="nav-item">
+                        <a href="" class="nav-link with-sub"><i class="typcn typcn-book"></i>Account</a>
+                        <nav class="nav-sub">
+                            <a href="{{ url_for('administrator.account',username=current_user.username, token=current_user.secure_token) }}"
+                               class="nav-sub-link">My Profile</a>
+                            <a href="" class="nav-sub-link">Edit Profile</a>
+                        </nav>
+                    </li><!-- nav-item -->
+
+                </ul><!-- nav -->
+            {% endif %}
+        </div><!-- container -->
+    </div><!-- az-navbar -->
+
+
+{% endblock %}
+
+
+{% block app_content %}
+    {% block alerts %}
+        <div class="container">
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+
+                        <div class="alert alert-solid-info" role="alert">
+                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                            {{ message }}
+                        </div><!-- alert -->
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+        </div>
+    {% endblock %}
+{% endblock %}
+
+{% block footer %}
+    <div class="az-footer">
+        <div class="container-fluid">
+            <span>&copy; 2019 Ruthbrenda Exaud </span>
+            <span>Designed by: PivotHub®</span>
+        </div><!-- container -->
+    </div><!-- az-footer -->
+{% endblock %}
+
+
+
+<script src="{{ url_for('static', filename='lib/jquery/jquery.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/ionicons/ionicons.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/jquery.flot/jquery.flot.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/jquery.flot/jquery.flot.resize.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/jqvmap/jquery.vmap.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/jqvmap/maps/jquery.vmap.world.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/perfect-scrollbar/perfect-scrollbar.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/datatables.net/js/jquery.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/datatables.net-dt/js/dataTables.dataTables.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/datatables.net-responsive/js/dataTables.responsive.min.js') }}"></script>
+<script src="{{ url_for('static', filename='lib/datatables.net-responsive-dt/js/responsive.dataTables.min.js') }}"></script>
+{{ moment.include_moment() }}
+<script src="{{ url_for('static', filename='lib/select2/js/select2.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/azia.js') }}"></script>
+<script src="{{ url_for('static', filename='js/chart.flot.sampledata.js') }}"></script>
+
+
+<script src="{{ url_for('static', filename='js/socket.io-1.2.0.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+
+{% block script %}{% endblock %}
+</body>
+</html>

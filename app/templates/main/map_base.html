@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>{% if title %} Sitters Seeker - {{ _(title) }}
+    {% else %}
+        Sitters Seeker - {{ _('Welcome  !!') }}
+    {% endif %}
+    </title>
+    <meta name="description" content="Neat">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Google Font -->
+    <link href="https://fonts.googleapis.com/css?family=Lato" rel="stylesheet">
+
+    <!-- Favicon -->
+    <link rel="apple-touch-icon" href="apple-touch-icon.png">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <link href='{{ url_for('static', filename='css/map.css') }}' rel='stylesheet'/>
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="css/neat.min.css") }}?v=1.0">
+    <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no'/>
+    <script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+    <link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet'/>
+
+
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+        }
+
+        #mapMapBox {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            width: 100%;
+        }
+    </style>
+
+</head>
+<body>
+
+<div class="">
+    {% if current_user.is_authenticated %}
+        {% with messages = get_flashed_messages() %}
+            {% if messages %}
+                {% for message in messages %}
+                    <div class="c-alert c-alert--info alert u-mb-medium">
+            <span class="c-alert__icon">
+              <i class="feather icon-info"></i>
+            </span>
+
+                        <div class="c-alert__content">
+                            <h4 class="c-alert__title">Heads Up!</h4>
+                            <p>{{ _(message) }}</p>
+                        </div>
+
+                        <button class="c-close" data-dismiss="alert" type="button">×</button>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+        {% block app_content %} {% endblock %}
+    {% endif %}
+
+
+</div>
+
+<!-- Main JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{{ moment.include_moment() }}
+<script type="application/javascript" src="{{ url_for('static', filename='js/neat.min.js') }}"></script>
+<script src="{{ url_for('static', filename='js/main.js') }}"></script>
+{% block script %}{% endblock %}
+</body>
+</html>

@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset='utf-8' />
+<title>Display a map with a custom style</title>
+<meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
+<script src='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.js'></script>
+<link href='https://api.tiles.mapbox.com/mapbox-gl-js/v1.0.0/mapbox-gl.css' rel='stylesheet' />
+<style>
+
+
+</style>
+</head>
+<body>
+
+ <div style="height: 100px; width: 100px">
+     <div style="height: 100px " id='map'></div>
+ </div>
+<script>
+mapboxgl.accessToken = 'pk.eyJ1Ijoic3Rvcm1qYW51YXJ5IiwiYSI6ImNqbnMwZnc5ZzBjdGUza21kYXJmNDhybTAifQ.4Dw9Cn1YFH17xmCiSjz8yA';
+var map = new mapboxgl.Map({
+container: 'map', // container id
+style: 'mapbox://styles/mapbox/dark-v10', //hosted style id
+center: [-77.38, 39], // starting position
+zoom: 3 // starting zoom
+});
+</script>
+
+</body>
+</html>

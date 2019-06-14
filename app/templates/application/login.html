@@ -1,0 +1,31 @@
+{% extends 'application/base.html' %}
+{% import "bootstrap/wtf.html" as wtf %}
+
+{% block app_content %}
+
+    <div class="az-content ">
+        <div class="container">
+            <div class="az-content-body">
+                <div class="az-content-breadcrumb">
+                    <span>BabySitter Application</span>
+                    <span>Login</span>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="az-signin-wrapper">
+                            <div class="az-card-signin" style="height: 350px; width: 500px; border: none">
+
+                                <div class="az-signin-header">
+                                    <h4>Enter your email and PIN to login</h4>
+
+                                    {{ wtf.quick_form(form) }}
+                                </div><!-- az-signin-header -->
+
+                            </div><!-- az-card-signin -->
+                        </div><!-- az-signin-wrapper -->
+                    </div><!-- col -->
+                </div>
+            </div><!-- az-content-body -->
+        </div>
+    </div><!-- az-content -->
+{% endblock %}

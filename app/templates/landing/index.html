@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <title>Baby Sitter Finder</title>
+    <link rel="icon" href="assets/icons/favicon.png" type="image/png" sizes="16x16">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="description" content="Array Multipurpose Startup Business Template">
+    <meta name="keywords" content="Array HTML Template, Array Startup Business Template, Startup Template">
+    <link href="{{ url_for('static', filename="landing/css/bootstrap.min.css") }}" rel="stylesheet" type="text/css" media="all" />
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:300,400,500,600,700" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename="landing/css/animate.css") }}"> <!-- Resource style -->
+    <link rel="stylesheet" href="{{ url_for('static', filename="landing/css/owl.carousel.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="landing/css/owl.theme.css") }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename="landing/css/ionicons.min.css") }}"> <!-- Resource style -->
+    <link href="{{ url_for('static', filename="landing/css/style.css") }}" rel="stylesheet" type="text/css" media="all" />
+  </head>
+  <body>
+    <div class="wrapper">
+      <!-- Navbar Section -->
+      <nav class="navbar navbar-expand-md navbar-light bg-light fixed-top">
+        <div class="container container-s">
+          <a class="navbar-brand" href="#">BabySitter.</a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+          <div class="collapse navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-auto navbar-right">
+              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url_for('application.apply') }}">Apply to Become a baby sitter</a></li>
+              <li class="nav-item"><a class="nav-link js-scroll-trigger" href="{{ url_for('auth.baby_sitter_login') }}">Login As Baby Sitter</a></li>
+              <li class="nav-item"><a class="btn-cta  nav-link js-scroll-trigger" href="{{ url_for('auth.register') }}">Start Now</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav><!-- Navbar End -->
+
+
+      <div id="main" class="main">
+        <div class="home"><!-- Hero Section-->
+          <div class="container">
+            <div class="row text-center">
+              <div class="col-md-12">
+                <div class="hero-content wow fadeIn">
+                  <h1>Seek a baby Sitter Around your locality</h1>
+                  <p>Secure, fast and Afodable.</p>
+                  <a class="btn-action js-scroll-trigger" href="{{ url_for('auth.register') }}">Register now</a>
+                </div>
+              </div>
+              <div class="col-md-12">
+                <div class="client-list wow fadeIn">
+                  <ul>
+                    <li><img class="img-fluid" src="{{ url_for('static', filename="img/pesapal.png") }}" alt="Client"> </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div><!-- Hero End -->
+
+
+
+        <!-- Array Footer Section -->
+        <div class="footer-sm">
+          <div class="container">
+            <div class="row">
+              <div class="col-md-4">
+                <a class="footer-logo" href="#">BabySitter.</a>
+              </div>
+              <div class="col-md-4">
+                <h6>&copy; RuthBrenda Exaud BENG COE </h6>
+              </div>
+
+            </div>
+          </div>
+        </div>
+
+
+       <!-- Scroll To Top -->
+        <div id="back-top" class="bk-top">
+          <div class="bk-top-txt">
+             <a class="back-to-top js-scroll-trigger" href="#main">top</a>
+          </div>
+        </div>
+       <!-- Scroll To Top Ends-->
+
+      </div> <!-- Main -->
+    </div><!-- Wrapper -->
+
+
+    <!-- Jquery and Js Plugins -->
+    <script type="text/javascript" src="{{ url_for('static', filename="landing/js/jquery-2.1.1.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="landing/js/popper.min.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="landing/js/bootstrap.min.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="landing/js/jquery.validate.min.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="landing/js/plugins.js") }}"></script>
+    <script type="text/javascript" src="{{ url_for('static', filename="landing/js/custom.js")}}"></script>
+  </body>
+</html>

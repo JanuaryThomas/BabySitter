@@ -1,0 +1,85 @@
+{% extends 'admin/base.html' %}
+
+{% block app_content %}
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="c-table-responsive@wide">
+                <table class="c-table">
+                    <thead class="c-table__head">
+                    <tr class="c-table__row">
+                        <th class="c-table__cell c-table__cell--head">Full name</th>
+                        <th class="c-table__cell c-table__cell--head">Registration</th>
+                        <th class="c-table__cell c-table__cell--head">Status</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for applicant in applicants %}
+                        <tr class="c-table__row">
+                            <td class="c-table__cell">
+                                <div class="o-media">
+                                    <div class="o-media__body">
+                                        <h6> {{ applicant.full_name }} </h6>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="c-table__cell">{{ applicant.registration_id }}</td>
+                            <td class="c-table__cell">
+                                {% if not applicant.accepted %}
+                                    <a class="c-badge c-badge--small c-badge--info"
+                                       href="{{ url_for('administrator.approve', token=applicant.secure_token) }}">Approve </a>
+                                {% else %}
+                                    <button class="c-badge c-badge--small c-badge--info">Approved</button>{% endif %}
+                            </td>
+                            <td class="c-table__cell">
+                                <div class="c-dropdown dropdown">
+                                    <a href="{{ url_for('administrator.applicant', token=applicant.secure_token) }}"
+                                       class="c-btn c-btn--info has-icon dropdown-toggle" id="dropdownMenuTable1"
+                                       data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" role="button">
+                                        More <i class="feather icon-chevron-down"></i>
+                                    </a>
+                                </div>
+                            </td>
+
+
+                        </tr>
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            'use strict';
+
+            $('#datatable1').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ items/page',
+                }
+            });
+
+            $('#datatable2').DataTable({
+                bLengthChange: false,
+                searching: false,
+                responsive: true
+            });
+
+            // Select2
+            $('.dataTables_length select').select2({minimumResultsForSearch: Infinity});
+
+        });
+    </script>
+{% endblock %}

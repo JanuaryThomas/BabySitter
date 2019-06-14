@@ -1,0 +1,10 @@
+{% extends 'application/base.html' %}
+
+{% block app_content %}
+        <div class="az-error-wrapper">
+      <h1>Oops!</h1>
+      <h2>Email unconfirmed</h2>
+      <h6>Please confirm your email first</h6>
+      <a href="{{ url_for('application.index') }}" class="btn btn-outline-indigo">Back to Home</a>
+    </div>
+{% endblock %}
