@@ -24,6 +24,20 @@ def before_request():
     pass
 
 
+@bp.route('/locs')
+def locs():
+    data = {
+
+    }
+
+    for location in Location.query.all():
+        lats = []
+        lats.append(location.user_lng)
+        lats.append(location.user_lat)
+        data.update(lats)
+
+    return jsonify(data)
+
 
 @bp.route('/')
 @bp.route('/index')
