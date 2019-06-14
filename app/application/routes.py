@@ -155,7 +155,7 @@ def account():
     if applicant is None:
         return render_template('application/applicant_login.html')
 
-    return render_template('application/account.html', title=applicant.first_name, applicant=applicant)
+    return render_template('application/account.html', title=applicant.full_name, applicant=applicant)
 
 @bp.route('/edit_account/<string:email>', methods=['GET', 'POST'])
 def edit_profile(email):

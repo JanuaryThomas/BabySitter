@@ -33,6 +33,13 @@
           <h2 class="c-navbar__title">
               <img style="height: 50px; width: 50px" src="{{ url_for('static', filename="img/mother.png") }}" alt="Neat">
           </h2>
+            <nav class="c-navbar__nav collapse" id="main-nav">
+          <ul class="c-navbar__nav-list">
+              <li class="c-navbar__nav-item">
+                <a class="c-navbar__nav-link" href="{{ url_for("main.index") }}">Home</a>
+              </li>
+          </ul>
+        </nav>
         </header>
 
         <div class="container">
