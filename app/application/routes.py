@@ -168,8 +168,7 @@ def edit_profile(email):
         if form.validate_on_submit():
             upload_result = upload(form.id_document.data)
 
-            applicant.first_name = form.first_name.data
-            applicant.last_name = form.last_name.data
+            applicant.full_name = form.full_name.data
             applicant.email = form.email.data
             applicant.gender = form.gender.data
             applicant.date_of_birth = form.date_of_birth.data
@@ -182,8 +181,7 @@ def edit_profile(email):
             applicant_id.url = upload_result['url']
             db.session.commit()
             return redirect(url_for('application.resend_confirm', email=applicant.email))
-        form.first_name.data = applicant.first_name
-        form.last_name.data = applicant.last_name
+        form.full_name.data = applicant.full_name
         form.email.data = applicant.email
-        return render_template('application/edit_account.html', form=form, title=_('Edit Account'))
+        return render_template('application/edit_account.html', form=form, title=_('Edit Account'), email=applicant.email)
     return redirect(url_for('application.get_password'))
