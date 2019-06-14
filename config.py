@@ -6,8 +6,9 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 
 class Config(object):
     SECRET_KEY = os.environ.get('SECRET_KEY') or 'hell0Wor79'
-    SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or  'sqlite:///' + os.path.join(basedir, 'app.db')
-    #SQLALCHEMY_DATABASE_URI ='postgres://idsaeucepvhhoi:01025df93c71cbb22330092e120db1561ef8ddc9fa7e4025b4a6c90a739768aa@ec2-50-19-109-120.compute-1.amazonaws.com:5432/d1sth1mo61q4c7'
+    #SQLALCHEMY_DATABASE_URI = os.environ.get('DATABASE_URL') or  'sqlite:///' + os.path.join(basedir, 'app.db')
+
+    SQLALCHEMY_DATABASE_URI ='postgres://btrlieuuhvhkdo:cab7f7798de7ba3b8f7347999269a73f7b547d77eb4f330dabcbc39f886f5c16@ec2-54-225-72-238.compute-1.amazonaws.com:5432/d2gvnmkvu7u57f'
 
 
     SQLALCHEMY_TRACK_MODIFICATIONS = False

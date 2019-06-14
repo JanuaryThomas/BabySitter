@@ -54,8 +54,6 @@ def index():
         user_lng = g.latlng[1]
     except Exception as e:
         flash("Error accessing your location, check your Internet or GPS")
-
-
     data = {}
 
     for location in locations:

@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 99f177d76f81
+Revision ID: fc146347aec1
 Revises: 
-Create Date: 2019-05-04 18:58:25.044864
+Create Date: 2019-06-14 21:27:01.104215
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '99f177d76f81'
+revision = 'fc146347aec1'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -172,8 +172,7 @@ def upgrade():
     sa.Column('secure_token', sa.String(length=128), nullable=True),
     sa.Column('name', sa.String(length=64), nullable=True),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id'),
-    sa.UniqueConstraint('name')
+    sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_role_secure_token'), 'role', ['secure_token'], unique=False)
     op.create_table('baby_sitter_notifications',
