@@ -96,6 +96,39 @@ def set_profile():
     return render_template('babysitter/set_profile.html', form=form)
 
 
+
+@bp.route('/set-location', methods=["POST"])
+@login_required
+def set_location():
+    user = User.query.filter_by(secure_token=current_user.secure_token).first()
+    if user is None: abort(404)
+
+    location = Location.query.filter_by(user_id=current_user.id).first()
+    if location is not None:
+        db.session.delete(location)
+        db.session.commit()
+        flash("Setting up new Location...")
+    if request.method == "POST":
+        if not request.json: return jsonify({'message': 'Wrong request'})
+
+        lat = request.json["lat"]
+        lng = request.json["lng"]
+        user.is_available = True
+        db.session.commit()
+        location = Location(
+            user_id=current_user.id,
+            user_lat=lat,
+            user_lng=lng
+        )
+
+        db.session.add(location)
+        db.session.commit()
+        flash("New Location is set")
+        return jsonify({'message': 'Your new Location has been Set'})
+    return jsonify({'message': 'error'})
+
+
+
 @bp.route('/set-available/')
 @login_required
 def set_available():

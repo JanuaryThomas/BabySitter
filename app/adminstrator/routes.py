@@ -57,6 +57,9 @@ def applicant(token):
         return 'This applicant does not exist'
     return render_template('admin/applicant.html', applicant=applicant, title=_(applicant.full_name))
 
+
+
+
 @bp.route('/approve_applicant/<token>')
 @login_required
 def approve(token):
