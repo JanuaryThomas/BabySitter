@@ -13,8 +13,10 @@ $(document).ready(function () {
             navigator.geolocation.getCurrentPosition(function (position) {
                 lat = position.coords.latitude;
                 lng = position.coords.longitude;
-                
+
                 data = {"lat": lat, "lng": lng};
+                console.log(data);
+                $('#alert-baby p').text("Loading..").show()
                 $.ajax({
                     type: "POST",
                     contentType: 'application/json',
@@ -24,7 +26,9 @@ $(document).ready(function () {
                     success: function (data) {
                         console.log("Success......................")
                         console.log(data)
-                    }
+                    },
+
+
                 });
             })
         }
