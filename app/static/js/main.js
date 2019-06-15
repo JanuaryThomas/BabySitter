@@ -28,8 +28,12 @@ $(document).ready(function () {
                     data: JSON.stringify(json_data, null, "\t"),
                     success: function (data) {
                         console.log("Success......................")
-                        console.log()
+                        console.log(JSON.stringify(data))
                     },
+                    error: function (data) {
+                        console.log(JSON.stringify(data))
+                    }
+
 
 
                 });
