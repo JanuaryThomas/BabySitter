@@ -7,31 +7,29 @@ $(document).ready(function () {
     $('.form-group').addClass('c-field');
 
 
-    
-    $('#set-location').click(function() {
+    $('#set-location').click(function () {
         var lat, lng;
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition(function (position) {
                 lat = position.coords.latitude;
                 lng = position.coords.longitude;
+                
+                data = {"lat": lat, "lng": lng};
+                $.ajax({
+                    type: "POST",
+                    contentType: 'application/json',
+                    url: "https://baby-sitters.herokuapp.com/babysitter/set-location",
+                    dataType: 'json',
+                    data: JSON.stringify(data, null, "\t"),
+                    success: function (data) {
+                        console.log("Success......................")
+                        console.log(data)
+                    }
+                });
             })
         }
-        data = {"lat": lat, "lng": lng}
 
-        $.ajax({
-        type: "POST",
-        contentType: 'application/json',
-        url: "https://baby-sitters.herokuapp.com/babysitter/set-location",
-        dataType: 'json',
-        data: JSON.stringify(data, null, "\t"),
-        success: function (data) {
-            console.log("Success......................")
-            console.log(data)
-        }
-    })
     });
-
-
 
 
 });
