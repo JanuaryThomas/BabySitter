@@ -14,15 +14,18 @@ $(document).ready(function () {
                 lat = position.coords.latitude;
                 lng = position.coords.longitude;
 
-                data = {"lat": lat, "lng": lng};
+                json_data = {"lat": lat, "lng": lng};
                 console.log(lat);
+                console.log(lng);
+                console.log(json_data);
+
                 $('#alert-baby p').text("Loading..").show()
                 $.ajax({
                     type: "POST",
                     contentType: 'application/json',
                     url: "https://baby-sitters.herokuapp.com/babysitter/set-location",
                     dataType: 'json',
-                    data: JSON.stringify(data, null, "\t"),
+                    data: JSON.stringify(json_data, null, "\t"),
                     success: function (data) {
                         console.log("Success......................")
                         console.log(data)
