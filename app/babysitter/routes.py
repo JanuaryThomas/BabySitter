@@ -109,6 +109,8 @@ def set_location():
         db.session.commit()
         flash("Setting up new Location...")
     if request.method == "POST":
+        print("Data Received JSON: {}".format(request.get_json()))
+        print("Data Received DATA: {}".format(request.get_data()))
         if not request.json: return jsonify({'message': 'Wrong request'})
 
         lat = request.json["lat"]
