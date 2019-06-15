@@ -99,7 +99,7 @@ def admin_register():
         user = User(username=form.username.data, email=form.email.data, secure_token=token_urlsafe())
         user.set_password(form.password.data)
         db.session.add(user)
-        #db.session.commit()
+        db.session.commit()
 
         role = Role(
             user_id=user.id,
