@@ -17,7 +17,7 @@ $(document).ready(function () {
                 json_data = {"lat": lat, "lng": lng};
                 console.log(lat);
                 console.log(lng);
-                console.log(json_data);
+                console.log(JSON.stringify(json_data));
 
                 $('#alert-baby p').text("Loading..").show()
                 $.ajax({
@@ -28,7 +28,7 @@ $(document).ready(function () {
                     data: JSON.stringify(json_data, null, "\t"),
                     success: function (data) {
                         console.log("Success......................")
-                        console.log(data)
+                        console.log()
                     },
 
 
