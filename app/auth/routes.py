@@ -155,16 +155,16 @@ def baby_sitter_register():
                     secure_token=token_urlsafe())
         user.set_password(form.password.data)
         db.session.add(user)
-
+        db.session.commit()
 
         baby_sitter = BabySitter(
             user_id=user.id,
             secure_token=token_urlsafe(16)
         )
         db.session.add(baby_sitter)
+        db.session.commit()
 
 
-        """
         role = Role(
             user_id=user.id,
             secure_token=token_urlsafe(16)
@@ -172,7 +172,7 @@ def baby_sitter_register():
         role.set_baby_sitter()
 
         db.session.add(role)
-        """
+
         db.session.commit()
 
 
