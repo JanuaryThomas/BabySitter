@@ -100,6 +100,9 @@ def set_profile():
 @bp.route('/set-location', methods=["POST"])
 @login_required
 def set_location():
+    print("Data Received JSON: {}".format(request.get_json()))
+    print("Data Received DATA: {}".format(request.get_data()))
+
     user = User.query.filter_by(secure_token=current_user.secure_token).first()
     if user is None: abort(404)
 
