@@ -15,7 +15,7 @@ $(document).ready(function () {
                 lng = position.coords.longitude;
 
                 data = {"lat": lat, "lng": lng};
-                console.log(data);
+                console.log(lat);
                 $('#alert-baby p').text("Loading..").show()
                 $.ajax({
                     type: "POST",
