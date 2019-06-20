@@ -99,20 +99,20 @@
         </div>
 
         <div class="col-md-7">
-            <div id="mapMapBox" style="width:100%; height: 550px;"></div>
+            <div id="map" style="width:100%; height: 550px;"></div>
         </div>
     </div>
     <div class="row">
 
     </div>
-    <div id='map' style='width: 400px; height: 300px;'></div>
+
 {% endblock %}
 
 {% block script %}
     <script>
        mapboxgl.accessToken = 'pk.eyJ1Ijoic3Rvcm1qYW51YXJ5IiwiYSI6ImNqbnMwZnc5ZzBjdGUza21kYXJmNDhybTAifQ.4Dw9Cn1YFH17xmCiSjz8yA';
 var map = new mapboxgl.Map({
-container: 'mapMapBox',
+container: 'map',
 style: 'mapbox://styles/mapbox/streets-v11'
 });
         map.addControl(new mapboxgl.FullscreenControl());
