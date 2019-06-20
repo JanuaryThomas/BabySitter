@@ -102,12 +102,16 @@
             <div id="map" style="width:100%; height: 550px;"></div>
         </div>
     </div>
-
     <script>
         mapboxgl.accessToken = 'pk.eyJ1Ijoic3Rvcm1qYW51YXJ5IiwiYSI6ImNqbnMwZnc5ZzBjdGUza21kYXJmNDhybTAifQ.4Dw9Cn1YFH17xmCiSjz8yA';
         var map = new mapboxgl.Map({
             container: 'map',
-            style: 'mapbox://styles/mapbox/streets-v11'
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [{{ user_lat }}, {{ user_lng }}],
+            zoom: 12,
+            bearing: -5,
+            pitch: 45,
+            interactive: true
         });
         map.addControl(new mapboxgl.FullscreenControl());
         map.addControl(new mapboxgl.NavigationControl());

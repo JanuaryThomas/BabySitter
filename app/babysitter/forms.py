@@ -23,7 +23,7 @@ class BabySitterAddPhoneForm(FlaskForm):
     def validate_phone(self, phone):
         user = User.query.filter_by(phone=phone.data).first()
         if user is not None:
-            raise ValidationError(_l('Please use a different Email'))
+            raise ValidationError(_l('Please use a different Phone Number'))
     submit = SubmitField(_l('Submit'))
 
 class BabySitterUpdateForm(FlaskForm):
