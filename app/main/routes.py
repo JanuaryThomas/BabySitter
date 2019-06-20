@@ -229,7 +229,7 @@ def selection():
 
     if selection is not None:
         baby_sitter = BabySitter.query.filter_by(id=selection.baby_sitter_id).first()
-        return render_template('main/selections.html', baby_sitter=baby_sitter, selection=selection, title=_('Selection'))
+        return render_template('main/baby-sitter.html', baby_sitter=baby_sitter, selection=selection, title=_('Selection'))
     flash ("You dont have any Baby Sitter selection yet!...")
     return redirect(url_for('main.index'))
 
