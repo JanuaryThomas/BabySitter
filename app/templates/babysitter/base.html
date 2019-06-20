@@ -31,7 +31,7 @@
         <div class="o-page__sidebar js-page-sidebar">
             <aside class="c-sidebar">
                 <div class="c-sidebar__brand">
-                    <a href="#"><img ></a>
+                    <a href="#"><img></a>
                 </div>
 
                 <!-- Scrollable -->
@@ -63,7 +63,6 @@
                         </li>
 
 
-
                         <li class="container-fluid">
                             <button id="set-location" class="c-btn c-btn--secondary u-mb-xsmall">
                                 Update Location
@@ -89,6 +88,15 @@
                 </button>
 
                 <h2 class="c-navbar__title">{{ title }}</h2>
+                {% if curren_user.is_available %}
+                    <a class="c-btn c-btn--danger" href="{{ url_for('babysitter.set-busy') }}">
+                        Set Busy
+                    </a>
+                {% else %}
+                    <a class="c-btn c-btn--danger" href="{{ url_for('babysitter.set-available') }}">
+                        Set available
+                    </a>
+                {% endif %}
 
 
                 <div class="c-dropdown dropdown">
@@ -97,15 +105,16 @@
                          aria-haspopup="true" aria-expanded="false" role="button">
                         <img class="c-avatar__img"
                                 {% if current_user.profile_pic is not none %}
-                            src="{{ current_user.profile_pic }}"
-                            {% else %} {{ current_user.avatar(size=32) }} {% endif %}
-                            alt="{{ _(current_user.email) }}"
+                             src="{{ current_user.profile_pic }}"
+                                {% else %} {{ current_user.avatar(size=32) }} {% endif %}
+                             alt="{{ _(current_user.email) }}"
                              alt="{{ current_user.username }}">
                     </div>
 
                     <div class="c-dropdown__menu has-arrow dropdown-menu dropdown-menu-right"
                          aria-labelledby="dropdownMenuAvatar">
-                        <a class="c-dropdown__item dropdown-item" href="{{ url_for('babysitter.profile', token=current_user.secure_token) }}">Profile</a>
+                        <a class="c-dropdown__item dropdown-item"
+                           href="{{ url_for('babysitter.profile', token=current_user.secure_token) }}">Profile</a>
                         <a class="c-dropdown__item dropdown-item" href="#">View Activity</a>
                         <a class="c-dropdown__item dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a>
                     </div>

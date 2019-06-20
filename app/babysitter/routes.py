@@ -108,8 +108,6 @@ def set_profile():
         return redirect(url_for('babysitter.index'))
     return render_template('babysitter/set_profile.html', form=form)
 
-
-
 @bp.route('/set-location', methods=["POST"])
 @login_required
 def set_location():
@@ -139,7 +137,7 @@ def set_location():
         return jsonify({'message': 'Your new Location has been Set'})
     return jsonify({'message': 'error'})
 
-@bp.route('/set-available/')
+@bp.route('/set-available')
 @login_required
 def set_available():
     user = User.query.filter_by(secure_token=current_user.secure_token).first()
