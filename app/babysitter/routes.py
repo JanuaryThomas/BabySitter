@@ -53,7 +53,8 @@ def before_request():
 def index():
     baby_sitter = BabySitter.query.filter_by(user_id=current_user.id).first()
     if baby_sitter is None: abort(404)
-    selection = baby_sitter.baby_sitter_selections
+    selection = BabySitterSelection.query.filter_by(baby_sitter_id=baby_sitter.id).first()
+    
 
     locations = current_user.locations
     user_lat = locations[0].user_lat
