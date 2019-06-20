@@ -18,7 +18,12 @@ class BabySitterProfileForm(FlaskForm):
 
 
 class BabySitterAddPhoneForm(FlaskForm):
-    phone= StringField(_l('Add Phone Number'), validators=[DataRequired()],  render_kw={"placeholder": _("(+255 714 xxx xxx )")})
+    phone = StringField(_l('Add Phone Number'), validators=[DataRequired()],  render_kw={"placeholder": _("(+255 714 xxx xxx )")})
+
+    def validate_phone(self, phone):
+        user = User.query.filter_by(phone=phone.data).first()
+        if user is not None:
+            raise ValidationError(_l('Please use a different Email'))
     submit = SubmitField(_l('Submit'))
 
 class BabySitterUpdateForm(FlaskForm):

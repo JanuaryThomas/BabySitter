@@ -3,7 +3,7 @@
 
 {% block app_content %}
 <div class="row">
-        <div class="col-md-7">
+        <div class="col-md-5">
             <div class="c-alert c-alert--info u-mb-medium">
                 <span class="c-alert__icon">
                   <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
@@ -21,10 +21,6 @@
                 <div class="c-tabs__list nav nav-tabs" id="myTab" role="tablist">
                     <a class="c-tabs__link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
                        aria-controls="nav-home" aria-selected="true">Activity</a>
-                    <a class="c-tabs__link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                       aria-controls="nav-profile" aria-selected="false">Documents</a>
-                    <a class="c-tabs__link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                       aria-controls="nav-contact" aria-selected="false">Notes</a>
                 </div>
                 <div class="c-tabs__content tab-content" id="nav-tabContent">
                     <div class="c-tabs__pane active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
@@ -101,7 +97,7 @@
             </nav>
         </div>
 
-        <div class="col-md-5">
+        <div class="col-md-7">
             <div class="c-card">
                 <div class="u-text-center">
                     <div class="c-avatar c-avatar--large u-mb-small u-inline-flex">
@@ -119,17 +115,6 @@
 
                 <span class="c-text--subtitle">Phone NUMBER</span>
                 <p class="u-mb-small u-text-large">{{ _(current_user.phone) }}</p>
-
-            </div>
-
-            <div class="c-card">
-                <h4>Payments</h4>
-                <p class="u-mb-medium">Payout method</p>
-                <div class="o-media u-mb-small">
-                    <div class="o-media__img u-mr-xsmall">
-                        <img src="{{ url_for('static', filename='img/pesapal.png') }}" alt="PesaPal">
-                    </div>
-                </div>
 
             </div>
         </div>

@@ -55,10 +55,12 @@ def index():
     if baby_sitter is None: abort(404)
     selection = baby_sitter.baby_sitter_selections
 
-
+    locations = current_user.locations
+    user_lat = locations[0].user_lat
+    user_lng = locations[0].user_lng
     if selection is None:
         flash("No one has sent you any request!..")
-    return render_template('babysitter/index.html', title=_('Home'), selection=selection)
+    return render_template('babysitter/index.html', title=_('Home'), selection=selection, user_lat=user_lat, user_lng=user_lng)
 
 @bp.route('/add-phone', methods=["POST", "GET"])
 @login_required

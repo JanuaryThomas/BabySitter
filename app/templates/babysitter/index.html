@@ -9,29 +9,7 @@
 
         <div class="col-md-12">
             <div class="c-card u-ph-zero u-pb-zero">
-
-                <div class="u-ph-medium">
-                    <p>Baby Seekers </p>
-                </div>
-                <div class="c-card is-animated u-text-center">
-                    <div class="c-avatar u-inline-flex u-mb-small">
-                        <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Clark">
-                    </div>
-                    <h4></h4>
-                    <p class="u-pb-small u-mb-small u-border-bottom">Facebook Inc.</p>
-
-                    <p class="u-h4">
-                        <a class="u-mr-xsmall" href="#">
-                            <i class="feather icon-facebook"></i>
-                        </a>
-                        <a class="u-mr-xsmall" href="#">
-                            <i class="feather icon-twitter"></i>
-                        </a>
-                        <a class="u-mr-xsmall" href="#">
-                            <i class="feather icon-github"></i>
-                        </a>
-                    </p>
-                </div>
+                <div id="mapMapBox" style="width:100%; height: 550px"></div>
             </div>
         </div>
     </div>
@@ -53,11 +31,11 @@
                 type: 'Feature',
                 geometry: {
                     type: 'Point',
-                    coordinates: [39.2801, -6.8153]
+                    coordinates: [ {{ user_lng }}, {{ user_lat }}]
                 },
                 properties: {
-                    title: 'BabySitter',
-                    description: 'Dar Es Salaam'
+                    title: '{{ current_user.username }}',
+                    description: '{{ current_user.phone }}'
                 }
             }]
         };
