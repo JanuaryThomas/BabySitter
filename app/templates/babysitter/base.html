@@ -87,7 +87,6 @@
                     <i class="feather icon-align-left"></i>
                 </button>
 
-                <h2 class="c-navbar__title">{{ title }}</h2>
                 {% if current_user.is_available %}
                     <a class="c-btn c-btn--danger" href="{{ url_for('babysitter.set_busy') }}">
                         Set Busy
@@ -97,6 +96,8 @@
                         Set available
                     </a>
                 {% endif %}
+
+
 
 
                 <div class="c-dropdown dropdown">

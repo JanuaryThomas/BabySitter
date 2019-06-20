@@ -143,6 +143,7 @@ def set_available():
     user = User.query.filter_by(secure_token=current_user.secure_token).first()
     if user is None: abort(404)
     user.is_available = True
+    db.session.commit()
     flash("You are now available, for pending request")
     return redirect(url_for('babysitter.index'))
 
@@ -152,6 +153,7 @@ def set_busy():
     user = User.query.filter_by(secure_token=current_user.secure_token).first()
     if user is None: abort(404)
     user.is_available = False
+    db.session.commit()
     flash("You are now not available, for pending request")
     return redirect(url_for('babysitter.index'))
 
