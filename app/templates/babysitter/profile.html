@@ -109,7 +109,7 @@
                     </div>
 
                     <h5>{{ current_user.first_name }}</h5>
-                    <p>{{ _('Baby Sitter') }}</p>
+                    <p><a class="c-btn--success c-btn" href="{{ url_for('babysitter.set-profile') }}">Change profile</a> </p>
                 </div>
 
                 <span class="c-divider u-mv-small"></span>
@@ -118,19 +118,17 @@
                 <p class="u-mb-small u-text-large">{{ _(current_user.email) }}</p>
 
                 <span class="c-text--subtitle">Phone NUMBER</span>
-                <p class="u-mb-small u-text-large">{{ _(current_user.email) }}</p>
+                <p class="u-mb-small u-text-large">{{ _(current_user.phone) }}</p>
 
             </div>
 
             <div class="c-card">
                 <h4>Payments</h4>
-                <p class="u-mb-medium">Add or remove a payout method</p>
-
+                <p class="u-mb-medium">Payout method</p>
                 <div class="o-media u-mb-small">
                     <div class="o-media__img u-mr-xsmall">
                         <img src="{{ url_for('static', filename='img/pesapal.png') }}" alt="PesaPal">
                     </div>
-
                 </div>
 
             </div>
