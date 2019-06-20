@@ -16,6 +16,7 @@ import cloudinary
 import cloudinary.api
 from cloudinary.uploader import upload
 from cloudinary.utils import cloudinary_url
+from flask import session
 import pycountry
 import geocoder
 from app.babysitter.forms import BabySitterProfileForm, BabySitterAddPhoneForm
@@ -30,11 +31,21 @@ cloudinary.config(
 
 @bp.before_request
 def before_request():
+    baby_sitter = BabySitter.query.filter_by(user_id=current_user.id).first()
+    parrent = Parent.query.filter_by().first(user_id=current_user.id).first()
+
+    # TODO: UNAUTHORISE VISIT
+    if baby_sitter is None:
+        pass # Go Home
+
     if current_user.is_authenticated:
         current_user.last_seen = datetime.utcnow()
         db.session.commit()
         if current_user.phone is None:
             redirect(url_for('babysitter.add_phone'))
+
+        if current_user.profile_pic is None:
+            redirect(url_for('babysitter.profile', token=current_user.secure_token))
 
 @bp.route('/')
 @bp.route('/index')
@@ -100,8 +111,7 @@ def set_profile():
 @bp.route('/set-location', methods=["POST"])
 @login_required
 def set_location():
-    print("Data Received JSON: {}".format(request.get_json()))
-    print("Data Received DATA: {}".format(request.get_data()))
+
 
     user = User.query.filter_by(secure_token=current_user.secure_token).first()
     if user is None: abort(404)

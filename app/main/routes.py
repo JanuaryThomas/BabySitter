@@ -29,20 +29,18 @@ def locs():
     data = {
         "rest": []
     }
-
     for location in Location.query.all():
         lats = []
         lats.append(location.user_lng)
         lats.append(location.user_lat)
         data["rest"].append(lats)
-
     return jsonify(data)
-
 
 @bp.route('/')
 @bp.route('/index')
 @bp.route('/landing')
 def landing():
+    # if current user is authenticated redirect to current page
     return render_template('landing/index.html', title=_('Home'))
 
 @bp.route('/parent')

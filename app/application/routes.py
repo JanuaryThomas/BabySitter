@@ -98,7 +98,6 @@ def confirm(token, email):
 @bp.route('/send_confirm/<string:email>')
 def resend_confirm(email):
     applicant = Applicant.query.filter_by(email=email).first()
-
     if applicant is None:
         abort(404)
     if applicant.email_confirmed:
