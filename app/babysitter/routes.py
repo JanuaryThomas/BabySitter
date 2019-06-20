@@ -32,7 +32,7 @@ cloudinary.config(
 @bp.before_request
 def before_request():
     baby_sitter = BabySitter.query.filter_by(user_id=current_user.id).first()
-    parrent = Parent.query.filter_by().first(user_id=current_user.id).first()
+    parrent = Parent.query.filter_by(user_id=current_user.id).first()
 
     # TODO: UNAUTHORISE VISIT
     if baby_sitter is None:
