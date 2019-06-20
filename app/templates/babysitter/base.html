@@ -89,11 +89,11 @@
 
                 <h2 class="c-navbar__title">{{ title }}</h2>
                 {% if current_user.is_available %}
-                    <a class="c-btn c-btn--danger" href="{{ url_for('babysitter.set-busy') }}">
+                    <a class="c-btn c-btn--danger" href="{{ url_for('babysitter.set_busy') }}">
                         Set Busy
                     </a>
                 {% else %}
-                    <a class="c-btn c-btn--danger" href="{{ url_for('babysitter.set-available') }}">
+                    <a class="c-btn c-btn--danger" href="{{ url_for('babysitter.set_available') }}">
                         Set available
                     </a>
                 {% endif %}
