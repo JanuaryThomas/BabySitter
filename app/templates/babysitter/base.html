@@ -183,9 +183,9 @@
 
                     <div class="c-dropdown__menu has-arrow dropdown-menu dropdown-menu-right"
                          aria-labelledby="dropdownMenuAvatar">
-                        <a class="c-dropdown__item dropdown-item" href="#">Edit Profile</a>
+                        <a class="c-dropdown__item dropdown-item" href="{{ url_for('babysitter', token=current_user.secure_token) }}">Edit Profile</a>
                         <a class="c-dropdown__item dropdown-item" href="#">View Activity</a>
-                        <a class="c-dropdown__item dropdown-item" href="#">Log out</a>
+                        <a class="c-dropdown__item dropdown-item" href="{{ url_for('auth.logout') }}">Log out</a>
                     </div>
                 </div>
             </header>
@@ -196,7 +196,7 @@
             {% with messages = get_flashed_messages() %}
                 {% if messages %}
                     {% for message in messages %}
-                        <div id="alert-baby" class="c-alert c-alert--info alert u-mb-medium">
+                        <div id="alert-baby" class="c-alert c-alert--info alert u-mb-small>
             <span class="c-alert__icon">
               <i class="feather icon-info"></i>
             </span>
