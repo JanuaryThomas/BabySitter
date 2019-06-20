@@ -110,16 +110,10 @@
 {% block script %}
     <script>
        mapboxgl.accessToken = 'pk.eyJ1Ijoic3Rvcm1qYW51YXJ5IiwiYSI6ImNqbnMwZnc5ZzBjdGUza21kYXJmNDhybTAifQ.4Dw9Cn1YFH17xmCiSjz8yA';
-        var map = new mapboxgl.Map({
-            container: 'mapMapBox',
-            style: 'mapbox://styles/mapbox/streets-v11',
-            center: [39.2167, -6.8167],
-            zoom: 12,
-            bearing: -5,
-            pitch: 45,
-            interactive: true
-
-        });
+var map = new mapboxgl.Map({
+container: 'mapMapBox',
+style: 'mapbox://styles/mapbox/streets-v11'
+});
         map.addControl(new mapboxgl.FullscreenControl());
         map.addControl(new mapboxgl.NavigationControl());
     </script>
