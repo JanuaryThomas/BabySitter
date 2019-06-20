@@ -111,37 +111,19 @@
 
 {% block script %}
     <script>
-        mapboxgl.accessToken = 'pk.eyJ1Ijoic3Rvcm1qYW51YXJ5IiwiYSI6ImNqbnMwZnc5ZzBjdGUza21kYXJmNDhybTAifQ.4Dw9Cn1YFH17xmCiSjz8yA';
+       mapboxgl.accessToken = 'pk.eyJ1Ijoic3Rvcm1qYW51YXJ5IiwiYSI6ImNqbnMwZnc5ZzBjdGUza21kYXJmNDhybTAifQ.4Dw9Cn1YFH17xmCiSjz8yA';
         var map = new mapboxgl.Map({
             container: 'mapMapBox',
-            style: 'mapbox://styles/mapbox/dark-v9',
-            center: [39.2801, -6.8153],
-            zoom: 6
+            style: 'mapbox://styles/mapbox/streets-v11',
+            center: [39.2167, -6.8167],
+            zoom: 12,
+            bearing: -5,
+            pitch: 45,
+            interactive: true
+
         });
-
-        var geojson = {
-            type: 'FeatureCollection',
-            features: [{
-                type: 'Feature',
-                geometry: {
-                    type: 'Point',
-                    coordinates: [{{ user_lng }}, {{ user_lat }}]
-                },
-                properties: {
-                    title: '{{ current_user.username }}',
-                    description: '{{ current_user.phone }}'
-                }
-            }]
-        };
-
-        geojson.features.forEach(function (marker) {
-            var el = document.createElement('div');
-            el.className = 'baby_sitter';
-
-            new mapboxgl.Marker(el)
-                .setLngLat(marker.geometry.coordinates)
-                .addTo(map);
-        });
+        map.addControl(new mapboxgl.FullscreenControl());
+        map.addControl(new mapboxgl.NavigationControl());
     </script>
 
 {% endblock %}
