@@ -231,9 +231,11 @@ def selection():
     parent = Parent.query.filter_by(user_id=current_user.id).first()
     selection = BabySitterSelection.query.filter_by(parent_id=parent.id).first()
 
+
     if selection is not None:
         baby_sitter = BabySitter.query.filter_by(id=selection.baby_sitter_id).first()
-        return render_template('main/baby-sitter.html', baby_sitter=baby_sitter, selection=selection, title=_('Selection'))
+        user = User.query.filter_by(id=baby_sitter.user_id).first()
+        return render_template('main/baby-sitter.html', user=user, selection=selection, title=_('Selection'))
     flash ("You dont have any Baby Sitter selection yet!...")
     return redirect(url_for('main.index'))
 

@@ -101,23 +101,23 @@
             <div class="c-card">
                 <div class="u-text-center">
                     <div class="c-avatar c-avatar--large u-mb-small u-inline-flex">
-                        <img class="c-avatar__img" src="{{ baby_sitter.baby_sitter.profile_pic }}" alt="Avatar">
+                        <img class="c-avatar__img" src="{{ user.profile_pic }}" alt="Avatar">
                     </div>
 
                     <a class="c-btn--danger c-btn" href="{{ url_for('main.cancel_selection', token=baby_sitter.secure_token) }}">
                         Cancel Request
                     </a>
 
-                    <h5>{{ baby_sitter.baby_sitter.first_name }}</h5>
+                    <h5>{{ user.first_name }}</h5>
                 </div>
 
                 <span class="c-divider u-mv-small"></span>
 
                 <span class="c-text--subtitle">{{ _('Email') }}</span>
-                <p class="u-mb-small u-text-large">{{ _(baby_sitter.baby_sitter_user.email) }}</p>
+                <p class="u-mb-small u-text-large">{{ _(user.email) }}</p>
 
                 <span class="c-text--subtitle">{{ _('Phone NUMBER') }}</span>
-                <p class="u-mb-small u-text-large">{{ _(baby_sitter.baby_sitter.phone) }}</p>
+                <p class="u-mb-small u-text-large">{{ _(user.phone) }}</p>
 
 
             </div>
