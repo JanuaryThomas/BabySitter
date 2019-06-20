@@ -226,6 +226,7 @@ def select_baby_sitter(token):
 def selection():
     parent = Parent.query.filter_by(user_id=current_user.id).first()
     selection = BabySitterSelection.query.filter_by(parent_id=parent.id).first()
+
     if selection is not None:
         baby_sitter = BabySitter.query.filter_by(id=selection.baby_sitter_id).first()
         return render_template('main/selections.html', baby_sitter=baby_sitter, selection=selection, title=_('Selection'))
