@@ -1,137 +1,37 @@
 {% extends 'babysitter/base.html' %}
 
 {% block app_content %}
+
+
+
     <div class="row">
-        <div class="col-md-7">
-            <div class="c-alert c-alert--info u-mb-medium">
-                <span class="c-alert__icon">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-                       stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-                       class="feather feather-check"><polyline points="20 6 9 17 4 12"></polyline></svg>
-                </span>
 
-                <div class="c-alert__content">
-                    <h4 class="c-alert__title">Pending Request</h4>
-                    <p></p>
+
+        <div class="col-md-12">
+            <div class="c-card u-ph-zero u-pb-zero">
+
+                <div class="u-ph-medium">
+                    <p>Baby Seekers </p>
                 </div>
-            </div><!-- // .c-alert -->
+                <div class="c-card is-animated u-text-center">
+                    <div class="c-avatar u-inline-flex u-mb-small">
+                        <img class="c-avatar__img" src="http://via.placeholder.com/72" alt="Clark">
+                    </div>
+                    <h4></h4>
+                    <p class="u-pb-small u-mb-small u-border-bottom">Facebook Inc.</p>
 
-            <nav class="c-tabs">
-                <div class="c-tabs__list nav nav-tabs" id="myTab" role="tablist">
-                    <a class="c-tabs__link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
-                       aria-controls="nav-home" aria-selected="true">Activity</a>
-                    <a class="c-tabs__link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
-                       aria-controls="nav-profile" aria-selected="false">Documents</a>
-                    <a class="c-tabs__link" id="nav-contact-tab" data-toggle="tab" href="#nav-contact" role="tab"
-                       aria-controls="nav-contact" aria-selected="false">Notes</a>
+                    <p class="u-h4">
+                        <a class="u-mr-xsmall" href="#">
+                            <i class="feather icon-facebook"></i>
+                        </a>
+                        <a class="u-mr-xsmall" href="#">
+                            <i class="feather icon-twitter"></i>
+                        </a>
+                        <a class="u-mr-xsmall" href="#">
+                            <i class="feather icon-github"></i>
+                        </a>
+                    </p>
                 </div>
-                <div class="c-tabs__content tab-content" id="nav-tabContent">
-                    <div class="c-tabs__pane active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
-                        <div class="c-feed">
-                            <div class="c-feed__item">
-                                <div class="c-feed__item-content">
-                                    <h6 class="u-text-small">Add new payout method</h6>
-                                    <p>Added paypal as the default payout method</p>
-                                </div>
-                                <p class="u-text-xsmall">just now</p>
-                            </div>
-
-                            <div class="c-feed__item c-feed__item--success">
-                                <div class="c-feed__item-content">
-                                    <h6 class="u-text-small">Payment received</h6>
-                                    <p>Cha-ching payment received from <a href="#">@client-22</a></p>
-                                </div>
-                                <p class="u-text-xsmall">30 mins ago</p>
-                            </div>
-
-                            <div class="c-feed__item">
-                                <div class="c-feed__item-content">
-                                    <h6 class="u-text-small">Project Approved</h6>
-                                    <p>Added landing page design to finished projects</p>
-                                </div>
-
-                                <p class="u-text-xsmall">6 hours ago</p>
-                            </div>
-
-                            <div class="c-feed__item c-feed__item--fancy">
-                                <div class="c-feed__item-content">
-                                    <h6 class="u-text-small">Project Approved</h6>
-                                    <p>Moved new charachter design to <a href="#">@adamslandler</a></p>
-                                </div>
-                                <p class="u-text-xsmall">2 Days ago</p>
-                            </div>
-
-                            <div class="c-feed__item c-feed__item--danger">
-                                <div class="c-feed__item-content">
-                                    <h6 class="u-text-small">Project Approved</h6>
-                                    <p>Design was approved by Neat company</p>
-                                </div>
-                                <p class="u-text-xsmall">2 Days ago</p>
-                            </div>
-
-                            <div class="c-feed__item c-feed__item--warning">
-                                <div class="c-feed__item-content">
-                                    <h6 class="u-text-small">Project Approved</h6>
-                                    <p>New order received from Canada by #49832</p>
-                                </div>
-                                <p class="u-text-xsmall">4 Days ago</p>
-                            </div>
-
-                            <div class="c-feed__item">
-                                <div class="c-feed__item-content">
-                                    <h6 class="u-text-small">Project Approved</h6>
-                                    <p>New order received from Canada by #49832</p>
-                                </div>
-                                <p class="u-text-xsmall">5 Days ago</p>
-                            </div>
-                        </div><!-- // .c-feed -->
-                    </div>
-                    <div class="c-tabs__pane" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">ducimus
-                        quam fuga, vero atque, error laboriosam odio provident eveniet nemo reiciendis non optio,
-                        laborum enim ipsum dolorum, voluptatem ducimus quam fuga, vero atque, error laboriosam odio
-                        provident eveniet nemo!
-                    </div>
-                    <div class="c-tabs__pane" id="nav-contact" role="tabpanel" aria-labelledby="nav-contact-tab">optio,
-                        laborum enim ipsum dolorum, voluptatem ducimus quam fuga, vero atque, error laboriosam odio
-                        provident eveniet nemo reicienoptio, laborum enim ipsum dolorum, voluptatem ducimus quam fuga,
-                        vero atque, error laboriosam odio provident eveniet nemo reicien
-                    </div>
-                </div>
-            </nav>
-        </div>
-
-        <div class="col-md-5">
-            <div class="c-card">
-                <div class="u-text-center">
-                    <div class="c-avatar c-avatar--large u-mb-small u-inline-flex">
-                        <img class="c-avatar__img" src="{{ current_user.profile_pic }}" alt="Avatar">
-                    </div>
-
-                    <h5>{{ current_user.first_name }}</h5>
-                    <p>{{ _('Baby Sitter') }}</p>
-                </div>
-
-                <span class="c-divider u-mv-small"></span>
-
-                <span class="c-text--subtitle">{{ _('Email') }}</span>
-                <p class="u-mb-small u-text-large">{{ _(current_user.email) }}</p>
-
-                <span class="c-text--subtitle">Phone NUMBER</span>
-                <p class="u-mb-small u-text-large">{{ _(current_user.email) }}</p>
-
-            </div>
-
-            <div class="c-card">
-                <h4>Payments</h4>
-                <p class="u-mb-medium">Add or remove a payout method</p>
-
-                <div class="o-media u-mb-small">
-                    <div class="o-media__img u-mr-xsmall">
-                        <img src="{{ url_for('static', filename='img/pesapal.png') }}" alt="PesaPal">
-                    </div>
-
-                </div>
-
             </div>
         </div>
     </div>
