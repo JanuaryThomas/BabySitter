@@ -12,8 +12,14 @@
                 </span>
 
                 <div class="c-alert__content">
-                    <h4 class="c-alert__title">Pending Request</h4>
-                    <p></p>
+                    <h4 class="c-alert__title">Pending Action</h4>
+                    <a class="c-btn--danger c-btn" href="{{ url_for('main.cancel_selection', token=selection.secure_token) }}">
+                        Cancel Request
+                    </a>
+
+                    <a class="c-btn--danger c-btn" href="{{ url_for('main.complete', token=selection.secure_token) }}">
+                        Complete
+                    </a>
                 </div>
             </div><!-- // .c-alert -->
 
@@ -104,9 +110,7 @@
                         <img class="c-avatar__img" src="{{ user.profile_pic }}" alt="Avatar">
                     </div>
 
-                    <a class="c-btn--danger c-btn" href="{{ url_for('main.cancel_selection', token=selection.secure_token) }}">
-                        Cancel Request
-                    </a>
+
 
                     <h5>{{ user.first_name }}</h5>
                 </div>

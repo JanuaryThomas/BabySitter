@@ -65,20 +65,6 @@
                         </li>
 
                         <li class="container-fluid">
-                            {% if current_user.is_available %}
-                                <a class="c-btn c-btn--danger u-mb-xsmall" href="">
-                                    <i class="c-sidebar__icon feather icon-message-square"></i> Set Busy
-                                </a>
-                            {% else %}
-                                <a class="c-btn c-btn--success u-mb-xsmall"
-                                   href="{{ url_for('babysitter.set_available') }}">
-                                    Set Available
-                                </a>
-                            {% endif %}
-                        </li>
-
-
-                        <li class="container-fluid">
                             <a class="c-btn c-btn--secondary u-mb-xsmall"
                                href="{{ url_for('babysitter.set_available') }}">
                                 Update Location

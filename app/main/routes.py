@@ -176,7 +176,9 @@ def add_credit_card(token):
 def handle_accept(json_str):
     print(json_str)
 
-@bp.route('/omplete-sitting/<string:token>')
+
+# Complete Booking
+@bp.route('/complete-sitting/<string:token>')
 def complete(token):
     pass
 
@@ -185,7 +187,6 @@ def select_baby_sitter(token):
     baby_sitter = BabySitter.query.filter_by(secure_token=token).first()
     parent = Parent.query.filter_by(user_id=current_user.id).first()
     selections = BabySitterSelection.query.all()
-
     if baby_sitter is None: abort(404)
 
     for selection in selections:

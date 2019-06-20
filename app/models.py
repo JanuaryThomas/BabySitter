@@ -198,6 +198,7 @@ class Booking(db.Model):
     baby_sitter_id = db.Column(db.Integer, db.ForeignKey('baby_sitters.id'))
     parent_id = db.Column(db.Integer, db.ForeignKey('parents.id'))
     is_confirmed = db.Column(db.Boolean, default=False)
+    payment_id = db.Column(db.Integer, db.ForeignKey('payments.id'))
     start_time = db.Column(db.DateTime, default=datetime.utcnow())
     end_time = db.Column(db.DateTime, default=datetime.utcnow())
     secure_token = db.Column(db.String(128), index=True)
@@ -294,6 +295,15 @@ class District(db.Model):
     name = db.Column(db.String(120))
 
     wards = db.relationship('Ward', backref='district', lazy='dynamic')
+
+class Payment(db.Model):
+    __tablename__ = 'payments'
+    id = db.Column(db.Integer, primary_key=True)
+    secure_token = db.Column(db.String(128), index=True)
+    timestamp = db.Column(db.DateTime(), default=datetime.utcnow)
+    price = db.Column(db.Float, default=0.00)
+    bookings = db.relationship('Booking', backref='payment', lazy='dynamic')
+
 
 class Ward(db.Model):
     __tablename__ = 'wards'

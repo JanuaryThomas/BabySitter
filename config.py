@@ -44,6 +44,9 @@ class Config(object):
     BABEL_DEFAULT_LOCALE = 'en'
     BABEL_DEFAULT_TIMEZONE = 'UTC'
 
+    PESA_PAL_CONSUMER = 'IU5LNHtKJZSJjj3fLsV1iQKRIxnkzOFY'
+    PESA_PAL_SECRECT = 'jM2GRNgzUjgJcKthv2l6yoChP+A='
+
 
 
 
