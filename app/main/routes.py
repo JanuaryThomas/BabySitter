@@ -176,6 +176,10 @@ def add_credit_card(token):
 def handle_accept(json_str):
     print(json_str)
 
+@bp.route('/omplete-sitting/<string:token>')
+def complete(token):
+    pass
+
 @bp.route('/select-baby-sitter/<string:token>')
 def select_baby_sitter(token):
     baby_sitter = BabySitter.query.filter_by(secure_token=token).first()
@@ -187,7 +191,7 @@ def select_baby_sitter(token):
     for selection in selections:
         if selection.baby_sitter_id == baby_sitter.id and selection.parent_id == parent.id:
                 flash("You have already selected this baby Sitter")
-                return redirect(url_for('main.index'))
+                return redirect(url_for('main.selection'))
         elif selection.baby_sitter_id == baby_sitter.id:
             flash("This baby sitter is occupied")
             return redirect(url_for('main.index'))
