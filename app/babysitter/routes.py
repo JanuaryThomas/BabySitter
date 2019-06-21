@@ -57,8 +57,13 @@ def index():
     
 
     locations = current_user.locations
-    user_lat = locations[0].user_lat
-    user_lng = locations[0].user_lng
+    try:
+        user_lat = locations[0].user_lat
+        user_lng = locations[0].user_lng
+    except :
+        flash("There problem loading location information")
+
+
     if selection is None:
         flash("No one has sent you any request!..")
     return render_template('babysitter/index.html', title=_('Home'),  user_lat=user_lat, user_lng=user_lng)
