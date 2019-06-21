@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: fc146347aec1
+Revision ID: 408a00cca07a
 Revises: 
-Create Date: 2019-06-14 21:27:01.104215
+Create Date: 2019-06-21 14:52:40.202620
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = 'fc146347aec1'
+revision = '408a00cca07a'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -47,6 +47,14 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_countries_secure_token'), 'countries', ['secure_token'], unique=False)
+    op.create_table('payments',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('secure_token', sa.String(length=128), nullable=True),
+    sa.Column('timestamp', sa.DateTime(), nullable=True),
+    sa.Column('price', sa.Float(), nullable=True),
+    sa.PrimaryKeyConstraint('id')
+    )
+    op.create_index(op.f('ix_payments_secure_token'), 'payments', ['secure_token'], unique=False)
     op.create_table('applicants_ids',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('applicant_id', sa.Integer(), nullable=True),
@@ -201,12 +209,14 @@ def upgrade():
     sa.Column('baby_sitter_id', sa.Integer(), nullable=True),
     sa.Column('parent_id', sa.Integer(), nullable=True),
     sa.Column('is_confirmed', sa.Boolean(), nullable=True),
+    sa.Column('payment_id', sa.Integer(), nullable=True),
     sa.Column('start_time', sa.DateTime(), nullable=True),
     sa.Column('end_time', sa.DateTime(), nullable=True),
     sa.Column('secure_token', sa.String(length=128), nullable=True),
     sa.Column('timestamp', sa.DateTime(), nullable=True),
     sa.ForeignKeyConstraint(['baby_sitter_id'], ['baby_sitters.id'], ),
     sa.ForeignKeyConstraint(['parent_id'], ['parents.id'], ),
+    sa.ForeignKeyConstraint(['payment_id'], ['payments.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_index(op.f('ix_bookings_secure_token'), 'bookings', ['secure_token'], unique=False)
@@ -258,6 +268,8 @@ def downgrade():
     op.drop_table('regions')
     op.drop_index(op.f('ix_applicants_ids_secure_token'), table_name='applicants_ids')
     op.drop_table('applicants_ids')
+    op.drop_index(op.f('ix_payments_secure_token'), table_name='payments')
+    op.drop_table('payments')
     op.drop_index(op.f('ix_countries_secure_token'), table_name='countries')
     op.drop_table('countries')
     op.drop_index(op.f('ix_applicants_token'), table_name='applicants')
