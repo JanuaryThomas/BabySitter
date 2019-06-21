@@ -40,7 +40,7 @@
                     <ul class="c-sidebar__list">
                         <li>
                             <a class="c-sidebar__link is-active"
-                               href="{{ url_for('babysitter.profile', token=secure_token) }}">
+                               href="{{ url_for('babysitter.profile', token=current_user.secure_token) }}">
                                 <i class="c-sidebar__icon feather icon-user"></i>Profile
                             </a>
                         </li>
