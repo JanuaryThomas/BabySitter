@@ -217,12 +217,16 @@ def select_baby_sitter(token):
         if selection is None:
             flash("You dont have any selections")
             return redirect(url_for('main.index'))
-        if selection.baby_sitter_id == baby_sitter.id and selection.parent_id == parent.id:
+        """
+                if selection.baby_sitter_id == baby_sitter.id and selection.parent_id == parent.id:
                 flash("You have already selected this baby Sitter")
                 return redirect(url_for('main.selection'))
         elif selection.baby_sitter_id == baby_sitter.id:
             flash("This baby sitter is occupied")
             return redirect(url_for('main.index'))
+        
+        """
+
 
     selection = BabySitterSelection(
         baby_sitter_id=baby_sitter.id,
