@@ -73,7 +73,7 @@ def approve(token):
         db.session.commit()
         return redirect(url_for('administrator.applicant', token=applicant.secure_token))
     flash("Email not confirmed cant approve this use")
-    return redirect(url_for('administrator.applicants'))
+    return redirect(url_for('administrator.applications'))
 
 @bp.route('/disapprove/<string:token>')
 @login_required
