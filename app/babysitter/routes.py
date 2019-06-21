@@ -55,18 +55,9 @@ def index():
     if baby_sitter is None: abort(404)
     selection = BabySitterSelection.query.filter_by(baby_sitter_id=baby_sitter.id).first()
     
-
-    locations = current_user.locations
-    try:
-        user_lat = locations[0].user_lat
-        user_lng = locations[0].user_lng
-    except :
-        flash("There problem loading location information")
-
-
     if selection is None:
         flash("No one has sent you any request!..")
-    return render_template('babysitter/index.html', title=_('Home'),  user_lat=user_lat, user_lng=user_lng)
+    return render_template('babysitter/index.html', title=_('Home'))
 
 @bp.route('/add-phone', methods=["POST", "GET"])
 @login_required
