@@ -54,7 +54,7 @@ def index():
     baby_sitter = BabySitter.query.filter_by(user_id=current_user.id).first()
     if baby_sitter is None: abort(404)
     selection = BabySitterSelection.query.filter_by(baby_sitter_id=baby_sitter.id).first()
-    
+
     if selection is None:
         flash("No one has sent you any request!..")
     return render_template('babysitter/index.html', title=_('Home'))
