@@ -96,6 +96,8 @@ def index():
                         }
                     )
 
+        print(data)
+
     return render_template('main/index.html', title=_('Home'), data=data, user_lat=user_lat, user_lng=user_lng)
 
 
@@ -130,6 +132,7 @@ def account(token):
     pass
 
 @bp.route('/add-billing/<string:token>', methods=['GET', 'POST'])
+@login_required
 def add_billing(token):
     form = BillingAddressForm()
 
@@ -170,6 +173,7 @@ def add_phone():
 
 
 @bp.route('/edit-billing/<string:token>', methods=['GET', 'POST'])
+@login_required
 def edit_billing(token):
     form = EditBillingAddressForm()
 
@@ -288,11 +292,13 @@ def cancel_selection(token):
     return redirect(url_for('main.index'))
 
 @bp.route('/pay')
+@login_required
 def pay():
     return render_template('main/pay.html')
 
 
 @bp.route('/complete')
+@login_required
 def complete_pay():
     return 'Success'
 
