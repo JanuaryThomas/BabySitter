@@ -1,0 +1,88 @@
+{% extends "main/base.html" %}
+
+
+{% block app_content %}
+    <div class="container">
+          <div class="row justify-content-center">
+            <div class="col-lg-10">
+              <div class="c-invoice">
+
+                <div class="c-invoice__wrapper">
+                  <div class="c-invoice__header">
+
+
+                      <h4 class="c-invoice__title">
+                        Invoice #--<span class="c-invoice__date"></span>
+                      </h4>
+
+                      <div class="c-invoice__brand">
+                        <span class="c-icon c-icon--large c-icon--info">
+                          <img style="height: 50px; width: 50px"  src="{{ url_for('static', filename="img/mother.png") }}" alt="Neat">
+                        </span>
+                      </div>
+                  </div>
+
+                  <div class="c-invoice__details">
+                      <div class="c-invoice__company">
+                          <span class="u-text-mute u-text-uppercase u-text-xsmall">From:</span>
+                          <div class="c-invoice__company-name">
+                             {{ current_user.first_name }}
+                          </div>
+
+                          <div class="c-invoice__company-address">
+                              {{ current_user.email }},<br>
+                              {{ current_user.phone }}<br>
+                          </div>
+                      </div>
+
+                      <div class="c-invoice__company">
+                          <span class="u-text-mute u-text-uppercase u-text-xsmall">To:</span>
+                          <div class="c-invoice__company-name">
+                              Baby Sitter Finder
+                          </div>
+
+                          <div class="c-invoice__company-address">
+                          </div>
+                      </div>
+                  </div>
+
+                  <div class="c-invoice__body">
+                      <div class="c-invoice__table">
+                          <table class="c-table">
+                              <thead class="c-table__head c-table__head--slim">
+                                  <tr class="c-table__row">
+                                      <th class="c-table__cell c-table__cell--head">Description</th>
+                                      <th class="c-table__cell c-table__cell--head">Price</th>
+                                  </tr>
+                              </thead>
+                              <tbody>
+                                  <tr class="c-table__row">
+                                      <td class="c-table__cell">Baby Sitting Service</td>
+                                      <td class="c-table__cell">Tzs 500</td>
+                                  </tr>
+
+
+                              </tbody>
+
+                              <tfoot>
+                                  <tr class="c-table__row">
+                                      <td class="c-table__cell" ><strong>Total</strong></td>
+                                      <td class="c-table__cell"><strong>Tzs 500</strong></td>
+                                  </tr>
+                              </tfoot>
+                          </table>
+
+                          <div class="c-invoice__terms">
+                              All amounts shown on this invoice are in TZ Shillings.
+                          </div>
+                      </div>
+                  </div>
+                </div>
+                   <div class="c-invoice__footer">
+                       <a href="{{ url_for('main.checkout') }}" class="c-btn c-btn--success rounded"> Proceed with checkout</a>
+                   </div>
+              </div>
+            </div>
+          </div>
+        </div>
+{% endblock %}

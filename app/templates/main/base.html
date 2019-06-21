@@ -53,23 +53,11 @@
                             </a>
                         </li>
                         <li>
-                            <a class="c-sidebar__link" href="">
-                                <i class="c-sidebar__icon feather icon-message-square"></i>Messages
+                            <a class="c-sidebar__link" href="{{ url_for('main.add_phone') }}">
+                                <i class="c-sidebar__icon feather icon-phone-call"></i>Add Phone
                             </a>
                         </li>
 
-                        <li>
-                            <a class="c-sidebar__link" href="{{ url_for('main.selection') }}">
-                                <i class="c-sidebar__icon feather  icon-users"></i>Selections
-                            </a>
-                        </li>
-
-                        <li class="container-fluid">
-                            <a class="c-btn c-btn--secondary u-mb-xsmall"
-                               href="{{ url_for('babysitter.set_available') }}">
-                                Update Location
-                            </a>
-                        </li>
                     </ul>
                 </div>
 

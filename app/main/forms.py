@@ -99,11 +99,15 @@ class EditBillingAddressForm(FlaskForm):
 
 
 class PhoneForm(FlaskForm):
-    phone = StringField(_('PHONE'), validators=[DataRequired(), Regexp('[0-9]')],
-                               render_kw={"placeholder": "Phone Number "}
-                               )
+    phone = StringField(_l('Add Phone Number'), validators=[DataRequired()],
+                        render_kw={"placeholder": _("(+255 714 xxx xxx )")})
 
-    submit = SubmitField(_l('Update Phone'))
+    def validate_phone(self, phone):
+        user = User.query.filter_by(phone=phone.data).first()
+        if user is not None:
+            raise ValidationError(_l('Please use a different Phone Number'))
+
+    submit = SubmitField(_l('Submit'))
 
 
 class PostBlog(FlaskForm):

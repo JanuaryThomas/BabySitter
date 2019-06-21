@@ -15,9 +15,21 @@ from app.main import bp
 from app.models import User, BillingAddress, Location, BabySitter, BabySitterSelection, Parent, Notification, BabysitterNotification
 from .. import mqtt
 from .. import socketio
-
+import requests
+import pesapal
 from app.main.forms import EditProfileForm, EditBillingAddressForm, BillingAddressForm, ProfileForm, PhoneForm
 
+
+PESA_PAL_CONSUMER = 'IU5LNHtKJZSJjj3fLsV1iQKRIxnkzOFY'
+PESA_PAL_SECRECT = 'jM2GRNgzUjgJcKthv2l6yoChP+A='
+
+pesapal.consumer_key = PESA_PAL_CONSUMER
+pesapal.consumer_secret = PESA_PAL_SECRECT
+pesapal.testing = False
+
+post_params = {
+    'oauth_callback' : 'https://google.com'
+}
 
 @bp.before_request
 def before_request():
@@ -145,6 +157,18 @@ def add_billing(token):
     return render_template('main/add_billing.html', form=form, title=_('Add Billing'))
 
 
+@bp.route('/add-phone', methods=["POST", "GET"])
+@login_required
+def add_phone():
+    form = PhoneForm()
+    if form.validate_on_submit():
+        current_user.phone = form.phone.data
+        db.session.commit()
+        flash("Phone Number has been added")
+        return redirect(url_for('main.index'))
+    return render_template('main/add-phone.html', title=('Add Phone Number'), form=form)
+
+
 @bp.route('/edit-billing/<string:token>', methods=['GET', 'POST'])
 def edit_billing(token):
     form = EditBillingAddressForm()
@@ -190,6 +214,9 @@ def select_baby_sitter(token):
     if baby_sitter is None: abort(404)
 
     for selection in selections:
+        if selection is None:
+            flash("You dont have any selections")
+            return redirect(url_for('main.index'))
         if selection.baby_sitter_id == baby_sitter.id and selection.parent_id == parent.id:
                 flash("You have already selected this baby Sitter")
                 return redirect(url_for('main.selection'))
@@ -256,6 +283,33 @@ def cancel_selection(token):
     flash("This Selection has been canceled")
     return redirect(url_for('main.index'))
 
-@bp.route('/pay/<string:type>/<string:token>')
-def pay(type, token):
-    pass
+@bp.route('/pay')
+def pay():
+    return render_template('main/pay.html')
+
+
+@bp.route('/complete')
+def complete_pay():
+    return 'Success'
+
+
+
+
+@bp.route('/checkout')
+def checkout():
+    post_params = {
+        'oauth_callback' : url_for('main.complete_pay')
+    }
+
+    request_data = {
+        'Amount' : '500',
+        'Description' : ' Baby Sitter Payment',
+        'Type': 'MERCHANT',
+        'Reference': token_urlsafe(8),
+        'PhoneNumber': current_user.phone
+    }
+
+    url = pesapal.postDirectOrder(post_params, request_data)
+    response = requests.get(url)
+    print(response.content)
+    return response.content
