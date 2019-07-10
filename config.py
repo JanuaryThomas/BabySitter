@@ -20,7 +20,7 @@ class Config(object):
     MAIL_USE_TLS = True
     MAIL_USERNAME = os.environ.get('MAIL_USERNAME') or 'pivothub2019@gmail.com'
     MAIL_PASSWORD = os.environ.get('MAIL_PASSWORD') or 'pivot@3232'
-    ADMINS = ['pivothub2019@gmail.com']
+    ADMINS = ['pivothub2019@gmail.com', 'brexaud@gmail.com']
     LANGUAGES = ['en', 'sw', 'es']
     MS_TRANSLATOR_KEY = os.environ.get('MS_TRANSLATOR_KEY')
     ELASTICSEARCH_URL = os.environ.get('ELASTICSEARCH_URL ')
