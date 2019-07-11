@@ -58,6 +58,12 @@ def applicant(token):
     return render_template('admin/applicant.html', applicant=applicant, title=_(applicant.full_name))
 
 
+@bp.route('/parrents')
+@login_required
+def parrents():
+    users = User.query.all()
+    return render_template('admin/parents.html', users=users)
+
 
 
 @bp.route('/approve_applicant/<token>')

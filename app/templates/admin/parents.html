@@ -1,0 +1,81 @@
+{% extends 'admin/base.html' %}
+
+{% block app_content %}
+
+
+    <div class="row">
+        <div class="col-12">
+            <div class="c-table-responsive@wide">
+                <table class="c-table">
+                    <thead class="c-table__head">
+                    <tr class="c-table__row">
+                        <th class="c-table__cell c-table__cell--head">Full name</th>
+                        
+                        <th class="c-table__cell c-table__cell--head">Email</th>
+                    </tr>
+                    </thead>
+
+                    <tbody>
+                    {% for user in users %}
+                        {% if user.parent.count() > 0}
+                        <tr class="c-table__row">
+                            <td class="c-table__cell">
+                                <div class="o-media">
+                                    <div class="o-media__body">
+                                        <h6> {{ user.full_name }} </h6>
+                                    </div>
+                                </div>
+                            </td>
+
+                            <td class="c-table__cell">
+                                <div class="o-media">
+                                    <div class="o-media__body">
+                                        <h6> {{ user.email }} </h6>
+                                    </div>
+                                </div>
+                            </td>
+
+                            
+                            
+
+
+                        </tr>
+                        {% endif %}
+                        
+                    {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}
+
+{% block script %}
+    <script>
+        $(document).ready(function () {
+            'use strict';
+
+            $('#datatable1').DataTable({
+                responsive: true,
+                language: {
+                    searchPlaceholder: 'Search...',
+                    sSearch: '',
+                    lengthMenu: '_MENU_ items/page',
+                }
+            });
+
+            $('#datatable2').DataTable({
+                bLengthChange: false,
+                searching: false,
+                responsive: true
+            });
+
+            // Select2
+            $('.dataTables_length select').select2({minimumResultsForSearch: Infinity});
+
+        });
+    </script>
+{% endblock %}
