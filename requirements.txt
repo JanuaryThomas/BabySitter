@@ -25,7 +25,7 @@ WTForms==2.1
 Flask_CKEditor==0.4.1
 Flask_MQTT==0.0.11
 coverage==4.5.1
-Werkzeug==0.14.1
+Werkzeug==0.15.3
 bleach==1.5.0
 Jinja2>=2.10
 Flask_SocketIO==2.9.4
