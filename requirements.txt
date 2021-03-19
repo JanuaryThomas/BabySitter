@@ -8,7 +8,7 @@ Flask_Migrate==2.1.1
 Flask_WTF==0.14.2
 elasticsearch==6.1.1
 pymongo==3.6.0
-Pygments==2.2.0
+Pygments==2.7.4
 pesapal==0.0.6
 celery==4.2.1
 Flask_Script==2.0.6
