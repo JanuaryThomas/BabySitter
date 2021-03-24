@@ -5,7 +5,7 @@ import sys
 import eventlet
 
 
-#eventlet.monkey_patch()
+eventlet.monkey_patch()
 
 COV = None
 if os.environ.get('FLASK_COVERAGE'):
