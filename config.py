@@ -10,7 +10,8 @@ class Config(object):
 
     SQLALCHEMY_DATABASE_URI ='postgres://btrlieuuhvhkdo:cab7f7798de7ba3b8f7347999269a73f7b547d77eb4f330dabcbc39f886f5c16@ec2-54-225-72-238.compute-1.amazonaws.com:5432/d2gvnmkvu7u57f'
 
-
+    
+    TEST_A = ''
     SQLALCHEMY_TRACK_MODIFICATIONS = False
     LOG_TO_STDOUT = os.environ.get('LOG_TO_STDOUT')
     MAIL_SERVER = os.environ.get('MAIL_SERVER') or 'smtp.gmail.com'
